@@ -1,3 +1,10 @@
+<template>
+  <div class="app">
+    <Sidebar />
+    <router-view />
+  </div>
+</template>
+
 <script>
 import Sidebar from "@/components/Sidebar.vue";
 export default {
@@ -6,13 +13,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div class="app">
-    <Sidebar />
-    <router-view />
-  </div>
-</template>
 
 <style scoped lang="scss">
 .app {
