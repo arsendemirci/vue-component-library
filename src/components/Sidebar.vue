@@ -11,11 +11,19 @@
 
    <h3>Menu</h3>
    <div class="menu">
-     <router-link to="/">
+     <router-link class="button" to="/">
        <span class="material-icons">home</span>
        <span class="text">Home</span >
      </router-link>
-     <router-link to="/about">
+     <router-link class="button" to="/">
+       <span class="material-icons">home</span>
+       <span class="text">Home</span >
+     </router-link>
+     <router-link class="button" to="/">
+       <span class="material-icons">home</span>
+       <span class="text">Home</span >
+     </router-link>
+     <router-link class="button" to="/about">
        <span class="material-icons">assignment</span>
        <span class="text">Forms</span >
      </router-link>
@@ -25,10 +33,12 @@
 
 <script setup>
 import { ref } from 'vue'
-const is_expanded = ref(false);
+const is_expanded = ref(localStorage.getItem('is_expanded') === 'true');
 
 const toggleMenu = () => {
   is_expanded.value = !is_expanded.value;
+
+  localStorage.setItem('is_expanded', is_expanded.value);
 }
 
 </script>
@@ -80,6 +90,54 @@ aside{
     }
   }
 
+  h3, .menu .text {
+    opacity: 0;
+    transition: .3s ease-out;
+  }
+
+  h3{
+    color: var(--greey);
+    font-size: .8rem;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+  }
+
+  .menu {
+    margin: 0 -1rem;
+
+    .button{
+      display:flex;
+      align-items: center;
+      text-decoration: none;
+      padding: .5rem 1rem;
+      transition: .2s ease-out;
+
+      .material-icons{
+        font-size: 2rem;
+        color: var(--light);
+        transition: .2s ease-out;
+      }
+
+      .text {
+        color: var(--light);
+        transition: .2s ease-out;
+      }
+
+      &:hover, &.router-link-exact-active{
+        background-color: var(--dark-alt);
+
+        .material-icons,.text {
+          color: var(--primary);
+        }
+      }
+
+      &.router-link-exact-active{
+        border-right: 5px solid var(--primary);
+      }
+
+    }
+  }
+
   &.is_expanded{
    // width: var(--sidebar-width);  I couldn't get this to work
     width: 300px;
@@ -88,6 +146,16 @@ aside{
       top: -3rem;
       .menu-toggle{
         transform: rotate(360deg);
+      }
+    }
+
+    h3, .menu .text {
+      opacity: 1;
+    }
+
+    .button{
+      .material-icons{
+        margin-right: .5rem;
       }
     }
   }
