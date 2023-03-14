@@ -1,0 +1,58 @@
+$palette-colors: (
+  "white-100": #ffffff,
+  "grey-10": #f8f9f9,
+  "grey-15": #b4c2d3b4,
+  "grey-20": #b4c2d3,
+  "grey-30": #79838e,
+  "grey-40": #23303d,
+  "grey-50": #000000,
+  "grey-60": #d3dae5,
+  "grey-70": #e5e5e5,
+  "grey-80": #bababa,
+  "grey-90": #f7f8fa,
+  "red-10": #e5472d,
+  "red-20": #e74a2c,
+  "red-30": #e02020,
+  "red-40": #da2828,
+  "pink-10": #ea4c89,
+  "orange-10": #e47b49,
+  "orange-20": #ff512f,
+  "green-10": #6dd400,
+  "green-20": #83cb1b,
+  "green-30": #1bc04a,
+  "green-40": #579653,
+  "blue-10": #00c3ff,
+  "blue-20": #1286fb,
+  "blue-30": #0081f1,
+  "blue-40": #0e4cfb,
+  "blue-50": #3b37de,
+  "yellow-10": #e7ac0f,
+  "yellow-20": #f0a60a,
+  "yellow-30": #ffa300,
+  "yellow-40": #ff9d01,
+  "yellow-50": #fa9307,
+  "coral-10": #50d2c2,
+  "coral-20": #1c638d,
+  "purple-10": #6236ff,
+  "purple-20": #602ee5,
+  "purple-30": #7c38bc,
+  "purple-40": #8023ae,
+  "fushia-10": #e82762,
+  "fushia-20": #d20051,
+  "fushia-30": #b80342,
+  "fushia-40": #ae23a6,
+  "fushia-50": #d3034f,
+);
+
+@function palette-color($key, $alpha: null) {
+  $color: map-get($palette-colors, $key);
+  @if ($alpha and $alpha<1 and $alpha >=0) {
+    $color: rgba($color, $alpha);
+  }
+  @return $color;
+}
+
+@function palette-color-level($color-name, $level) {
+  $color: palette-color($color-name + "-" + $level);
+  @return $color;
+}

@@ -1,0 +1,61 @@
+$brand-font-family-base: $font-family !default;
+
+/* Brand Color Variations */
+
+$brand-white: palette-color-level("white", 100) !default;
+$brand-red: palette-color-level("red", 10) !default;
+$brand-green: palette-color-level("green", 10) !default;
+$brand-blue: palette-color-level("grey", 40) !default;
+$brand-yellow: palette-color-level("yellow", 10) !default;
+
+$brand-grey: palette-color-level("grey", 40) !default;
+
+$brand-default: $brand-grey !default;
+$brand-primary: palette-color-level("yellow", 30) !default;
+$brand-secondary: palette-color-level("fushia", 20) !default;
+
+$brand-success: $brand-green !default;
+$brand-warning: $brand-yellow !default;
+$brand-danger: $brand-red !default;
+
+/* Text Colors */
+$brand-text-color: $brand-grey !default;
+$brand-text-secondary-color: $brand-white !default;
+$brand-text-color-inverse: $brand-white !default;
+$brand-text-secondary-color-inverse: $brand-grey !default;
+
+/* Background Colors */
+$brand-background-primary-color: $brand-white !default;
+
+/* Link Color */
+$brand-link-primary-color: $brand-grey !default;
+$brand-link-primary-hover-color: palette-color-level("grey", 30) !default;
+
+/* Font Sizes */
+$brand-font-size-base: $font-size !default;
+
+$brand-font-size-sm: $font-size-small !default;
+$brand-font-size-lg: $font-size-large !default;
+$brand-font-size-xlg: $font-size-xlarge !default;
+
+/* Letter Spacings */
+$brand-letter-spacing: $letter-spacing !default;
+
+/* Font Weights */
+$brand-font-weight-light: $font-weight-light;
+
+/* Border Colors */
+$brand-border-primary-color: $brand-grey !default;
+$brand-border-color-inverse: palette-color-level("grey", 60) !default;
+
+/* Border Radiuses */
+$brand-border-primary-radius: palette-radius-level(20) !default;
+
+/* Circular Button diameter */
+$brand-button-diameter: palette-space-level(50) !default;
+
+/* Layout size variables */
+$body-container-width: 1024px;
+$sidebar-width: 342px;
+$body-width: 1366px;
+$header-height: 80px;

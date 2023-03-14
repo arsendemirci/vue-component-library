@@ -1,0 +1,29 @@
+// import and bundle required scss modules for global use
+// ======================================================
+// example
+// @import './variables/variables';
+// @
+// @import 'mixins';
+// @import 'rules';
+// ======================================================
+
+// add global styles here
+// ==================================================
+// example
+// body {
+//   color: $brand-text-color;
+//   font-family: $font-family;
+//   background-color: $brand-background-primary-color;
+// }
+// ===================================================
+
+@import "./variables/variables";
+@import "functions";
+@import "mixins";
+@import "rules";
+
+body {
+  color: $brand-text-color;
+  font-family: $font-family;
+  background-color: $brand-background-primary-color;
+}

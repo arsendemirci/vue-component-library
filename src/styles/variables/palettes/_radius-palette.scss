@@ -1,0 +1,27 @@
+$palette-radiuses: (
+  "radius-0": 50%,
+  "radius-1": 2px,
+  "radius-2": 4px,
+  "radius-3": 6px,
+  "radius-4": 8px,
+  "radius-5": 10px,
+  "radius-6": 12px,
+  "radius-7": 14px,
+  "radius-8": 16px,
+  "radius-9": 18px,
+  "radius-10": 20px,
+  "radius-11": 22px,
+  "radius-12": 24px,
+  "radius-13": 26px,
+  "radius-14": 28px,
+  "radius-15": 30px,
+);
+
+@function palette-radius($key) {
+  @return map-get($palette-radiuses, $key);
+}
+
+@function palette-radius-level($level) {
+  $radius: palette-radius("radius-" + $level);
+  @return $radius;
+}
