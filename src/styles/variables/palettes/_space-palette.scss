@@ -1,0 +1,54 @@
+/* General */
+$space-unit: 10px;
+
+$palette-spaces: (
+  "space-3": $space-unit * 0.3,
+  "space-5": $space-unit * 0.5,
+  "space-6": $space-unit * 0.6,
+  "space-8": $space-unit * 0.8,
+  "space-10": $space-unit,
+  "space-12": $space-unit * 1.2,
+  "space-13": $space-unit * 1.3,
+  "space-15": $space-unit * 1.5,
+  "space-18": $space-unit * 1.8,
+  "space-20": $space-unit * 2,
+  "space-25": $space-unit * 2.5,
+  "space-30": $space-unit * 3,
+  "space-35": $space-unit * 3.5,
+  "space-40": $space-unit * 4,
+  "space-45": $space-unit * 4.5,
+  "space-50": $space-unit * 5,
+  "space-60": $space-unit * 6,
+  "space-70": $space-unit * 7,
+  "space-75": $space-unit * 7.5,
+  "space-80": $space-unit * 8,
+  "space-100": $space-unit * 10,
+  "space-200": $space-unit * 20,
+  "space-300": $space-unit * 30,
+  "space-400": $space-unit * 40,
+  "space-500": $space-unit * 50,
+);
+
+@function palette-space($key) {
+  @return map-get($palette-spaces, $key);
+}
+
+@function palette-space-level($level) {
+  $space: palette-space("space-" + $level);
+  @return $space;
+}
+
+@function palette-padding-level($top, $right, $bottom: null, $left: null) {
+  $space-top: $top;
+  $space-right: $right;
+  $space-bottom: $top;
+  $space-left: $right;
+  @if ($bottom and $left) {
+    $space-bottom: $bottom;
+    $space-left: $left;
+  }
+  @return palette-space("space-" + $space-top)
+    palette-space("space-" + $space-right)
+    palette-space("space-" + $space-bottom)
+    palette-space("space-" + $space-left);
+}

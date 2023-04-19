@@ -1,0 +1,44 @@
+$font-family-headings: "Roboto", sans-serif !default;
+$font-family: "Roboto", sans-serif !default;
+$font-family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif !default;
+
+$font-family-monospace: monospace !default;
+$font-render-mode: optimizeLegibility !default;
+
+/* Font Sizes */
+$font-size: palette-font-size-level(5) !default;
+$font-size-h1: palette-font-size-level(12) !default;
+$font-size-h2: palette-font-size-level(8) !default;
+$font-size-h3: palette-font-size-level(7) !default;
+$font-size-h4: palette-font-size-level(6) !default;
+$font-size-h5: palette-font-size-level(5) !default;
+$font-size-h6: palette-font-size-level(4) !default;
+
+$font-size-small: palette-font-size-level(1) !default;
+$font-size-large: palette-font-size-level(12) !default;
+$font-size-xlarge: palette-font-size-level(14) !default;
+
+/* Font Weights */
+$font-weight-light: palette-font-weight-level(1) !default;
+$font-weight-regular: palette-font-weight-level(2) !default;
+$font-weight-bold: palette-font-weight-level(5) !default;
+
+$font-weight-h1: $font-weight-regular !default;
+$font-weight-h2: $font-weight-regular !default;
+$font-weight-h3: $font-weight-regular !default;
+$font-weight-h4: $font-weight-regular !default;
+$font-weight-h5: $font-weight-regular !default;
+$font-weight-h6: $font-weight-regular !default;
+
+$link-font-weight: $font-weight-regular !default;
+
+/* Letter Spacings */
+$letter-spacing: normal !default;
+$letter-spacing-h1: normal !default;
+$letter-spacing-h2: normal !default;
+$letter-spacing-h3: normal !default;
+$letter-spacing-h4: normal !default;
+$letter-spacing-h5: normal !default;
+$letter-spacing-h6: normal !default;
