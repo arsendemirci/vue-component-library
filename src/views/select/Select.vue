@@ -142,7 +142,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 35px;
+  gap: palette-space-level(35);
   font-size: large;
   header {
     h1,
@@ -150,20 +150,20 @@ export default {
       text-shadow: 1px 1px 3px rgb(255, 255, 255);
     }
     h1 {
-      margin: 50px;
+      margin: palette-space-level(50);
     }
     h3 {
       margin: 0;
     }
   }
   > div {
-    padding: 15px 20px;
+    padding:palette-space-level(15) palette-space-level(20);
     flex-direction: column;
     background: white;
-    border-radius: 10px;
+    border-radius: palette-space-level(10);
     box-shadow: 0 0 6px rgba(190, 190, 190, 0.44);
     display: flex;
-    gap: 20px;
+    gap: palette-space-level(20);
     background: floralwhite;
     width: 100%;
     max-width: 1000px;
@@ -180,16 +180,16 @@ export default {
       &:hover {
         .option-value {
           border-color: white;
-          border-width: 4px;
+          border-width: palette-space-level(4);
         }
       }
       &-value {
-        padding-right: 10px;
+        padding-right: palette-space-level(10);
         border-right: 1px solid #f7b947b0;
         transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25);
       }
       &-text {
-        padding-left: 10px;
+        padding-left: palette-space-level(10);
       }
     }
   }

@@ -223,7 +223,7 @@ watch(
   width: 260px;
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: palette-space-level(5);
   border: solid 1px #c3c3c3;
   box-sizing: border-box;
   clear: both;
@@ -233,11 +233,11 @@ watch(
   font-family: inherit;
   font-size: 16px;
   font-weight: normal;
-  height: 42px;
+  height: palette-space-level(42);
   line-height: 40px;
   outline: none;
-  padding-left: 15px;
-  padding-right: 25px;
+  padding-left: palette-space-level(15);
+  padding-right: palette-space-level(25);
   position: relative;
   text-align: left !important;
   transition: all 0.24s ease-in-out;
@@ -247,7 +247,7 @@ watch(
   .current {
     @include flex-display(flex, center, space-between);
     flex-wrap: nowrap;
-    gap: 2px;
+    gap: palette-space-level(2);
 
     .is-selected {
       font-weight: bold;
@@ -274,7 +274,7 @@ watch(
     border-right: 2px solid #999;
     content: "";
     display: block;
-    height: 5px;
+    height: palette-space-level(5);
     margin-top: -4px;
     position: absolute;
     right: 12px;
@@ -282,7 +282,7 @@ watch(
     transform-origin: 66% 66%;
     transform: rotate(45deg);
     transition: all 0.15s ease-in-out;
-    width: 5px;
+    width: palette-space-level(5);
   }
 
   &.open {
@@ -303,7 +303,7 @@ watch(
   .list-wrapper {
     width: 100%;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: palette-space-level(5);
     box-shadow: 0 0 0 1px rgb(68 68 68 / 11%);
     box-sizing: border-box;
     opacity: 0;
@@ -320,21 +320,21 @@ watch(
     -webkit-text-fill-color: black;
     &:not(.show-up) {
       top: 100%;
-      margin-top: 5px;
+      margin-top: palette-space-level(5);
     }
     &.show-up {
       bottom: 100%;
-      margin-bottom: 5px;
+      margin-bottom: palette-space-level(5);
     }
     .search {
       display: flex;
-      padding: 10px;
+      padding: palette-space-level(10);
       input {
-        padding: 3px 6px;
+        padding: palette-space-level(3) palette-space-level(6);
         width: 100%;
         border: none;
-        border-radius: 4px;
-        height: 25px;
+        border-radius: palette-space-level(4);
+        height: palette-space-level(25);
         box-shadow: 0 0 2px rgba(255, 138, 13, 0.71);
         outline: none;
         transition: all 0.22s cubic-bezier(0.5, 0, 0, 1.25);
@@ -347,7 +347,7 @@ watch(
   .list {
     padding: 0;
     overflow: auto;
-    max-height: 300px;
+    max-height: palette-space-level(300);
     &.search-list {
       margin: 0 0 5px 0;
     }
@@ -357,12 +357,12 @@ watch(
     }
 
     &::-webkit-scrollbar {
-      width: 18px;
+      width: palette-space-level(18);
     }
 
     &::-webkit-scrollbar-track {
       background: transparent;
-      border-radius: 3px;
+      border-radius: palette-space-level(3);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -376,19 +376,19 @@ watch(
   .option {
     cursor: pointer;
     font-weight: 400;
-    line-height: 40px;
+    line-height: palette-space-level(40);
     list-style: none;
-    min-height: 40px;
+    min-height: palette-space-level(40);
     outline: none;
-    padding-left: 5px;
-    padding-right: 29px;
+    padding-left: palette-space-level(5);
+    padding-right: palette-space-level(29);
     text-align: left;
     transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25);
-    border-radius: 5px;
+    border-radius:palette-space-level(5);
 
     &:not(.disabled):not(.selected):hover {
       background-color: $primary-color;
-      padding-left: 14px;
+      padding-left: palette-space-level(14);
       -webkit-text-fill-color: #fff;
     }
 
@@ -401,7 +401,7 @@ watch(
 
     &.selected {
       font-weight: bold;
-      padding-left: 14px;
+      padding-left: palette-space-level(14);
       background-color: #f6f6f6;
     }
   }
