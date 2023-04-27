@@ -22,8 +22,16 @@
 @import "mixins";
 @import "rules";
 
-body {
-  color: $brand-text-color;
-  font-family: $font-family;
-  background-color: $brand-background-primary-color;
-}
+//! VARIABLES
+$primary-color: palette-color-level('fushia',50);
+
+$primary-color: #F99417;
+$gray-color: #64748b;
+$light-color: #f1f5f9;
+$dark-color: #1e293b;
+$dark-alt-color: #334155;
+$general-transition: all 0.5s;
+$sidebar-width:300px;
+
+
+
