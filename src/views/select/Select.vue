@@ -96,8 +96,8 @@
 </template>
 
 <script>
-import HwSelect from "@/components/library/select/HwSelect.vue";
-import SelectDemo from "@/components/library/select/SelectDemo.vue";
+import HwSelect from "@lib/select/HwSelect.vue";
+import SelectDemo from "./SelectDemo.vue";
 export default {
   name: "App",
   data() {
@@ -159,7 +159,7 @@ export default {
   > div {
     padding:palette-space-level(15) palette-space-level(20);
     flex-direction: column;
-    background: white;
+    background: palette-color-level(white, 100);
     border-radius: palette-space-level(10);
     box-shadow: 0 0 6px rgba(190, 190, 190, 0.44);
     display: flex;
@@ -179,13 +179,13 @@ export default {
 
       &:hover {
         .option-value {
-          border-color: white;
+          border-color: palette-color-level(white, 100);
           border-width: palette-space-level(4);
         }
       }
       &-value {
         padding-right: palette-space-level(10);
-        border-right: 1px solid #f7b947b0;
+        border-right: 1px solid palette-color-level(primary-alt, 100);
         transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25);
       }
       &-text {

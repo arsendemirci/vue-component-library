@@ -70,8 +70,8 @@ aside{
   overflow: hidden;
   min-height: 100vh;
   padding: 1rem;
-  background-color: $dark-color;
-  color: $light-color;
+  background-color: palette-color-level(primary-dark, 100);
+  color: palette-color-level(primary-light, 100);
   transition: .2s ease-out;
 
   .logo {
@@ -96,12 +96,12 @@ aside{
 
       .material-icons{
         font-size: 2rem;
-        color: $light-color;
+        color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
       &:hover{
         .material-icons{
-          color: $primary-color
+          color: palette-color-level(primary, 100);
         }
       }
     }
@@ -113,7 +113,7 @@ aside{
   }
 
   h3{
-    color: $gray-color;
+    color: palette-color-level(grey, 30);
     font-size: .8rem;
     margin-bottom: .5rem;
     text-transform: uppercase;
@@ -132,25 +132,25 @@ aside{
 
       .material-icons{
         font-size: 2rem;
-        color: $light-color;
+        color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
 
       .text {
-        color: $light-color;
+        color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
 
       &:hover, &.router-link-exact-active{
-        background-color: $dark-alt-color;
+        background-color: palette-color-level(primary-dark-alt, 100);
 
         .material-icons,.text {
-          color: $primary-color;
+          color: palette-color-level(primary, 100);
         }
       }
 
       &.router-link-exact-active{
-        border-right: 5px solid $primary-color;
+        border-right: 5px solid palette-color-level(primary, 100);
       }
     }
     .sub-menu{
@@ -191,7 +191,7 @@ aside{
       transition: .2s ease-in-out;
       display: block;
       padding: 14px 6px 14px 58px;
-      background-color:#25233e;
+      background-color:palette-color-level(grey, 40);
       .sub-menu-header{
         overflow: hidden;
         white-space: nowrap;
@@ -203,13 +203,13 @@ aside{
         flex-direction: column;
       }
       .sub-menu-item{
-        color: $light-color;
+        color: palette-color-level(primary-light, 100);
         font-size: .80rem;
         padding: 5px 0;
         text-decoration: none;
       }
       .sub-menu-divider{
-        opacity: $dark-alt-color;
+        opacity: palette-color-level(primary-dark-alt, 100);
         transition: inherit;
         border-width: thin 0 0 0;
         border-radius: 10px;
@@ -217,7 +217,7 @@ aside{
 
       }
       .sub-menu-item:hover{
-        color:$primary-color;
+        color: palette-color-level(primary, 100);
       }
     }
     .open-sub-menu{

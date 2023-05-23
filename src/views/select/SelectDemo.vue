@@ -125,19 +125,14 @@ h1 {
 }
 
 .card {
-  border: 1px solid #ccc;
+  border: 1px solid palette-color-level(grey, 10);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  background-color: #fff;
+  background-color: palette-color-level(white, 100);;
   .card-text{
     padding: 8px;
   }
-}
-
-.card-header {
-  background-color: #f8f8f8;
-  padding: 10px;
 }
 
 .card-body {
@@ -152,11 +147,11 @@ h1 {
    margin-bottom: 20px;
   pre {
     line-height: 1.2;
-    background-color: $dark-color;
+    background-color: palette-color-level(primary-dark, 100);
     border-radius: 5px;
     white-space: pre-wrap;
     overflow: auto;
-    color:$light-color;
+    color:palette-color-level(primary-light, 100);
   }
   code {
     display: inline;
@@ -178,17 +173,17 @@ table {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
-  background-color: #fff;
+  background-color: palette-color-level(white, 100);
 }
 
 th, td {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid palette-color-level(grey, 60);
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: palette-color-level(grey, 80);
   font-weight: bold;
 }
 

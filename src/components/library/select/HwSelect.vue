@@ -222,9 +222,9 @@ watch(
 .select-wrapper {
   width: 260px;
   -webkit-tap-highlight-color: transparent;
-  background-color: #fff;
+  background-color: palette-color-level(white, 100);
   border-radius: palette-space-level(5);
-  border: solid 1px #c3c3c3;
+  border: solid 1px palette-color-level(grey, 15);
   box-sizing: border-box;
   clear: both;
   cursor: pointer;
@@ -257,21 +257,21 @@ watch(
       height: 22px;
       border-radius: 50%;
       cursor: pointer;
-      color: #999;
+      color: palette-color-level(grey, 20);
       font-size: 22px;
       @include flex-display(flex, center, center);
       font-weight: bold;
       transition: all 0.21s cubic-bezier(0.5, 0, 0, 1.25);
       &:hover {
-        color: white;
-        background: #7c7c7c;
+        color: palette-color-level(white, 100);;
+        background: palette-color-level(grey, 30);
       }
     }
   }
 
   &:after {
-    border-bottom: 2px solid #999;
-    border-right: 2px solid #999;
+    border-bottom: 2px solid palette-color-level(grey, 20);;
+    border-right: 2px solid palette-color-level(grey, 20);
     content: "";
     display: block;
     height: palette-space-level(5);
@@ -286,8 +286,8 @@ watch(
   }
 
   &.open {
-    border-color: #ff8b0dd1;
-    box-shadow: 0 0 10px #ff8b0d73;
+    border-color: palette-color-level(primary, 100);
+    box-shadow: 0 0 10px palette-color-level(primary, 100);
 
     .list-wrapper {
       opacity: 1;
@@ -302,7 +302,7 @@ watch(
 
   .list-wrapper {
     width: 100%;
-    background-color: #fff;
+    background-color: palette-color-level(white, 100);
     border-radius: palette-space-level(5);
     box-shadow: 0 0 0 1px rgb(68 68 68 / 11%);
     box-sizing: border-box;
@@ -316,8 +316,8 @@ watch(
     opacity: 0.15s ease-out;
     transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
     z-index: 9;
-    color: #ffcb78;
-    -webkit-text-fill-color: black;
+    color: palette-color-level(primary-alt, 100);
+    -webkit-text-fill-color: palette-color-level(black, 100);
     &:not(.show-up) {
       top: 100%;
       margin-top: palette-space-level(5);
@@ -353,7 +353,7 @@ watch(
     }
 
     &:hover {
-      color: $primary-color;
+      color: palette-color-level(primary, 100);
     }
 
     &::-webkit-scrollbar {
@@ -387,22 +387,22 @@ watch(
     border-radius:palette-space-level(5);
 
     &:not(.disabled):not(.selected):hover {
-      background-color: $primary-color;
+      background-color: palette-color-level(primary, 100);
       padding-left: palette-space-level(14);
-      -webkit-text-fill-color: #fff;
+      -webkit-text-fill-color: palette-color-level(white, 100);
     }
 
     &.disabled {
       background-color: transparent;
-      color: #999;
+      color: palette-color-level(grey, 20);
       cursor: default;
-      -webkit-text-fill-color: #999;
+      -webkit-text-fill-color: palette-color-level(grey, 20);
     }
 
     &.selected {
       font-weight: bold;
       padding-left: palette-space-level(14);
-      background-color: #f6f6f6;
+      background-color: palette-color-level(grey, 90);
     }
   }
 }
