@@ -212,7 +212,7 @@ aside{
         opacity: palette-color-level(primary-dark-alt, 100);
         transition: inherit;
         border-width: thin 0 0 0;
-        border-radius: 10px;
+        border-radius: palette-radius-level(5);
         margin: 8px 0 8px 0;
 
       }

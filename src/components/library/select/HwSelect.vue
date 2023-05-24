@@ -223,7 +223,7 @@ watch(
   width: 260px;
   -webkit-tap-highlight-color: transparent;
   background-color: palette-color-level(white, 100);
-  border-radius: palette-space-level(5);
+  border-radius:   palette-radius-level(3);
   border: solid 1px palette-color-level(grey, 15);
   box-sizing: border-box;
   clear: both;
@@ -255,7 +255,7 @@ watch(
     .clear {
       width: 22px;
       height: 22px;
-      border-radius: 50%;
+      border-radius: palette-radius-level(0);
       cursor: pointer;
       color: palette-color-level(grey, 20);
       font-size: 22px;
@@ -303,7 +303,7 @@ watch(
   .list-wrapper {
     width: 100%;
     background-color: palette-color-level(white, 100);
-    border-radius: palette-space-level(5);
+    border-radius: palette-radius-level(3);
     box-shadow: 0 0 0 1px rgb(68 68 68 / 11%);
     box-sizing: border-box;
     opacity: 0;
@@ -333,7 +333,7 @@ watch(
         padding: palette-space-level(3) palette-space-level(6);
         width: 100%;
         border: none;
-        border-radius: palette-space-level(4);
+        border-radius: palette-radius-level(3);
         height: palette-space-level(25);
         box-shadow: 0 0 2px rgba(255, 138, 13, 0.71);
         outline: none;
@@ -362,7 +362,7 @@ watch(
 
     &::-webkit-scrollbar-track {
       background: transparent;
-      border-radius: palette-space-level(3);
+      border-radius:  palette-radius-level(2);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -384,7 +384,7 @@ watch(
     padding-right: palette-space-level(29);
     text-align: left;
     transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25);
-    border-radius:palette-space-level(5);
+    border-radius: palette-radius-level(3);
 
     &:not(.disabled):not(.selected):hover {
       background-color: palette-color-level(primary, 100);

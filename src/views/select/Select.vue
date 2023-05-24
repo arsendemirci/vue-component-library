@@ -160,7 +160,7 @@ export default {
     padding:palette-space-level(15) palette-space-level(20);
     flex-direction: column;
     background: palette-color-level(white, 100);
-    border-radius: palette-space-level(10);
+    border-radius: palette-radius-level(5);
     box-shadow: 0 0 6px rgba(190, 190, 190, 0.44);
     display: flex;
     gap: palette-space-level(20);

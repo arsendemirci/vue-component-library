@@ -126,7 +126,7 @@ h1 {
 
 .card {
   border: 1px solid palette-color-level(grey, 10);
-  border-radius: 5px;
+  border-radius:  palette-radius-level(3);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   background-color: palette-color-level(white, 100);;
@@ -148,7 +148,7 @@ h1 {
   pre {
     line-height: 1.2;
     background-color: palette-color-level(primary-dark, 100);
-    border-radius: 5px;
+    border-radius:  palette-radius-level(3);
     white-space: pre-wrap;
     overflow: auto;
     color:palette-color-level(primary-light, 100);
