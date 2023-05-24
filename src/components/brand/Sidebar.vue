@@ -95,7 +95,7 @@ aside{
       transform: rotate(-180deg);
 
       .material-icons{
-        font-size: 2rem;
+        font-size:  palette-font-size-level(12);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
@@ -114,7 +114,7 @@ aside{
 
   h3{
     color: palette-color-level(grey, 30);
-    font-size: .8rem;
+    font-size:  palette-font-size-level(3);
     margin-bottom: .5rem;
     text-transform: uppercase;
   }
@@ -131,7 +131,7 @@ aside{
       transition: .2s ease-out;
 
       .material-icons{
-        font-size: 2rem;
+        font-size:  palette-font-size-level(12);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
@@ -195,7 +195,7 @@ aside{
       .sub-menu-header{
         overflow: hidden;
         white-space: nowrap;
-        font-size: .85rem;
+        font-size:  palette-font-size-level(4);
         font-weight: bold;
       }
       .sub-menu-list{
@@ -204,7 +204,7 @@ aside{
       }
       .sub-menu-item{
         color: palette-color-level(primary-light, 100);
-        font-size: .80rem;
+        font-size:  palette-font-size-level(3);
         padding: 5px 0;
         text-decoration: none;
       }

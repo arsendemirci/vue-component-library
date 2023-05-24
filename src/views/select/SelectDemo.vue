@@ -120,7 +120,7 @@ export default {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: palette-font-size-level(14);
   margin-bottom: 20px;
 }
 
@@ -164,7 +164,7 @@ h1 {
   }
 }
 h2 {
-  font-size: 24px;
+  font-size: palette-font-size-level(9);
   margin: 0;
 }
 

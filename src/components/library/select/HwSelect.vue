@@ -231,7 +231,7 @@ watch(
   display: block;
   float: left;
   font-family: inherit;
-  font-size: 16px;
+  font-size:  palette-font-size-level(5);
   font-weight: normal;
   height: palette-space-level(42);
   line-height: 40px;
@@ -258,7 +258,7 @@ watch(
       border-radius: palette-radius-level(0);
       cursor: pointer;
       color: palette-color-level(grey, 20);
-      font-size: 22px;
+      font-size: palette-font-size-level(8);
       @include flex-display(flex, center, center);
       font-weight: bold;
       transition: all 0.21s cubic-bezier(0.5, 0, 0, 1.25);
