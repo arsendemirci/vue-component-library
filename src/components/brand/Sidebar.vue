@@ -15,7 +15,7 @@
        <span class="material-icons">home</span>
        <span class="text">Introduction</span>
      </router-link>
-     <router-link class="button" to="/" @click="toggleSidebar">
+     <router-link class="button" to="/components" @click="toggleSidebar">
        <span class="material-icons">view_quilt</span>
        <span class="text">Components</span>
        <span class="material-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }">arrow_drop_down</span>
@@ -63,7 +63,8 @@ const toggleSidebar = () => {
 <style scoped lang="scss">
 
 aside{
-  position: fixed;
+  position: relative;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   width: calc(2rem + 32px);
