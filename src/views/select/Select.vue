@@ -169,7 +169,7 @@ export default {
     max-width: 1000px;
     .v-model {
       .value {
-        font-weight: bolder;
+        font-weight: palette-font-weight-level(5);
         font-size: large;
       }
     }

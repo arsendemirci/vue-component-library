@@ -232,7 +232,7 @@ watch(
   float: left;
   font-family: inherit;
   font-size:  palette-font-size-level(5);
-  font-weight: normal;
+  font-weight:palette-font-weight-level(2);
   height: palette-space-level(42);
   line-height: 40px;
   outline: none;
@@ -250,7 +250,7 @@ watch(
     gap: palette-space-level(2);
 
     .is-selected {
-      font-weight: bold;
+      font-weight: palette-font-weight-level(5);
     }
     .clear {
       width: 22px;
@@ -260,7 +260,7 @@ watch(
       color: palette-color-level(grey, 20);
       font-size: palette-font-size-level(8);
       @include flex-display(flex, center, center);
-      font-weight: bold;
+      font-weight: palette-font-weight-level(5);
       transition: all 0.21s cubic-bezier(0.5, 0, 0, 1.25);
       &:hover {
         color: palette-color-level(white, 100);;
@@ -375,7 +375,7 @@ watch(
 
   .option {
     cursor: pointer;
-    font-weight: 400;
+    font-weight:  palette-font-weight-level(2);
     line-height: palette-space-level(40);
     list-style: none;
     min-height: palette-space-level(40);
@@ -400,7 +400,7 @@ watch(
     }
 
     &.selected {
-      font-weight: bold;
+      font-weight: palette-font-weight-level(5);
       padding-left: palette-space-level(14);
       background-color: palette-color-level(grey, 90);
     }

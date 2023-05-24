@@ -184,7 +184,7 @@ th, td {
 
 th {
   background-color: palette-color-level(grey, 80);
-  font-weight: bold;
+  font-weight: palette-font-weight-level(5);
 }
 
 </style>

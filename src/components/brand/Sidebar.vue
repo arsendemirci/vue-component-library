@@ -196,7 +196,7 @@ aside{
         overflow: hidden;
         white-space: nowrap;
         font-size:  palette-font-size-level(4);
-        font-weight: bold;
+        font-weight: palette-font-weight-level(5);
       }
       .sub-menu-list{
         display: flex;
