@@ -5,20 +5,20 @@
    </div>
   <div class="menu-toggle-wrap">
     <button class="menu-toggle" @click="toggleMenu">
-       <span class="material-icons">menu_open</span>
+      <fa class="fa-icons" icon="arrow-right-to-bracket" />
     </button>
   </div>
 
    <h3>Menu</h3>
    <div class="menu">
      <router-link class="button" to="/">
-       <span class="material-icons">home</span>
+       <fa class="fa-icons" icon="house" />
        <span class="text">Introduction</span>
      </router-link>
      <router-link class="button" to="/components" @click="toggleSidebar">
-       <span class="material-icons">view_quilt</span>
+       <fa class="fa-icons" icon="bandage" />
        <span class="text">Components</span>
-       <span class="material-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }">arrow_drop_down</span>
+       <fa class="fa-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }" icon="arrow-up-short-wide" />
      </router-link>
      <ul class="sub-menu" :class="{ 'open-sub-menu': isSidebarOpen }">
        <li class="sub-menu-header">FORM INPUTS</li>
@@ -38,7 +38,7 @@
 
 
      <router-link class="button" to="/about">
-       <span class="material-icons">assignment</span>
+       <fa class="fa-icons" icon="download" />
        <span class="text">Installation</span >
      </router-link>
    </div>
@@ -93,15 +93,15 @@ aside{
 
     .menu-toggle{
       transition: .2s ease-out;
-      transform: rotate(-180deg);
+      transform: rotate(-360deg);
 
-      .material-icons{
-        font-size:  palette-font-size-level(12);
+      .fa-icons{
+        font-size:  palette-font-size-level(9);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
       &:hover{
-        .material-icons{
+        .fa-icons{
           color: palette-color-level(primary, 100);
         }
       }
@@ -131,8 +131,8 @@ aside{
       padding: .5rem 1rem;
       transition: .2s ease-out;
 
-      .material-icons{
-        font-size:  palette-font-size-level(12);
+      .fa-icons{
+        font-size:  palette-font-size-level(8);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
@@ -145,7 +145,7 @@ aside{
       &:hover, &.router-link-exact-active{
         background-color: palette-color-level(primary-dark-alt, 100);
 
-        .material-icons,.text {
+        .fa-icons,.text {
           color: palette-color-level(primary, 100);
         }
       }
@@ -164,7 +164,7 @@ aside{
     .menu-toggle-wrap{
       top: -3rem;
       .menu-toggle{
-        transform: rotate(360deg);
+        transform: rotate(180deg);
       }
     }
 
@@ -173,7 +173,7 @@ aside{
     }
 
     .button{
-      .material-icons{
+      .fa-icons{
         margin-right: .5rem;
 
       }

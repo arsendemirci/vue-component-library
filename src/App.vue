@@ -28,7 +28,6 @@ export default {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: #f5f5f5;
   main {
     flex: 1;
     @media (max-width: 768px) {
@@ -39,7 +38,6 @@ export default {
     flex: 1;
     padding: 1rem;
     overflow-y: auto;
-    background-color: #f5f5f5;
     transition: .2s ease-out;
   }
 }
