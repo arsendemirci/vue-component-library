@@ -1,12 +1,18 @@
 <template>
   <div class="app">
-    <Sidebar />
-    <router-view />
+      <Sidebar />
+
+    <div class="content">
+        <header>
+          <slot name="header"></slot>
+        </header>
+        <router-view />
+     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from "@/components/Sidebar.vue";
+import Sidebar from "@/components/brand/Sidebar.vue";
 export default {
   components: {
     Sidebar,
@@ -15,16 +21,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.app {
-  display: flex;
 
+  .app {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
   main {
-    flex: 1 1 0;
-    padding: 2rem;
-
+    flex: 1;
     @media (max-width: 768px) {
       padding-left: 6rem;
     }
+  }
+  .content{
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    transition: .2s ease-out;
   }
 }
 </style>

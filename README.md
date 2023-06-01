@@ -1,8 +1,7 @@
-# ag-vue-library
+# vue-component-library
 
 This template should help get you started developing with Vue 3 in Vite
 
-Deneme Arsen
 
 ## Recommended IDE Setup
 

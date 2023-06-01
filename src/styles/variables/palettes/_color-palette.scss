@@ -1,11 +1,16 @@
 $palette-colors: (
+  "primary-100": #f99417,
+  "primary-alt-100": #ffcb78,
+  "primary-light-100":#f1f5f9,
+  "primary-dark-100":#1e293b,
+  "primary-dark-alt-100":#334155,
   "white-100": #ffffff,
+  "black-100": #000000,
   "grey-10": #f8f9f9,
   "grey-15": #b4c2d3b4,
   "grey-20": #b4c2d3,
-  "grey-30": #79838e,
-  "grey-40": #23303d,
-  "grey-50": #000000,
+  "grey-30": #64748b,
+  "grey-40": #232f43,
   "grey-60": #d3dae5,
   "grey-70": #e5e5e5,
   "grey-80": #bababa,
@@ -42,6 +47,11 @@ $palette-colors: (
   "fushia-30": #b80342,
   "fushia-40": #ae23a6,
   "fushia-50": #d3034f,
+  "beige-10": #ffffef,
+  "beige-20": #fff8df,
+  "beige-30": #fff1bf,
+  "beige-40": 	#ffe59e,
+  "beige-50": #ffdd7f,
 );
 
 @function palette-color($key, $alpha: null) {

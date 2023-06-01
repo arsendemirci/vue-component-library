@@ -12,8 +12,10 @@ $palette-font-sizes: (
   "font-size-10": 26px,
   "font-size-11": 28px,
   "font-size-12": 32px,
-  "font-size-13": 40px,
-  "font-size-14": 42px,
+  "font-size-13": 34px,
+  "font-size-14": 36px,
+  "font-size-15": 38px,
+  "font-size-16": 40px,
 );
 
 @function palette-font-size($key) {
