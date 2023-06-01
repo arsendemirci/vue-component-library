@@ -21,18 +21,29 @@
        <fa class="fa-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }" icon="arrow-up-short-wide" />
      </router-link>
      <ul class="sub-menu" :class="{ 'open-sub-menu': isSidebarOpen }">
-       <li class="sub-menu-header">FORM INPUTS</li>
+       
+      <li class="sub-menu-header">FORM INPUTS</li>
+       
        <li class="sub-menu-list">
          <router-link class="sub-menu-item" to="/buttons">File inputs</router-link>
          <router-link class="sub-menu-item" to="/forms">Forms</router-link>
          <router-link class="sub-menu-item" to="/selects">Selects</router-link>
        </li>
+
        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
+
        <li class="sub-menu-header">NAVIGATION</li>
        <li class="sub-menu-list">
          <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
          <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
          <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
+       </li>
+
+       <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
+
+       <li class="sub-menu-header">MODAL</li>
+       <li class="sub-menu-list">
+         <router-link class="sub-menu-item" to="/dialog">Dialog</router-link>
        </li>
      </ul>
 
