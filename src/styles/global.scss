@@ -22,8 +22,9 @@
 @import "mixins";
 @import "rules";
 
-body {
-  color: $brand-text-color;
-  font-family: $font-family;
-  background-color: $brand-background-primary-color;
-}
+//! VARIABLES
+$general-transition: all 0.5s;
+$sidebar-width:300px;
+
+
+

@@ -1,3 +1,9 @@
+//! Fonts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&family=Golos+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons');
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.gstatic.com');
+
 $brand-font-family-base: $font-family !default;
 
 /* Brand Color Variations */
@@ -54,8 +60,9 @@ $brand-border-primary-radius: palette-radius-level(20) !default;
 /* Circular Button diameter */
 $brand-button-diameter: palette-space-level(50) !default;
 
-/* Layout size variables */
+/* Layout size variables
 $body-container-width: 1024px;
-$sidebar-width: 342px;
+$sidebar-width: 300px;
 $body-width: 1366px;
 $header-height: 80px;
+*/
