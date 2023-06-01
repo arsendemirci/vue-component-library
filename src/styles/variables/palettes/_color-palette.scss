@@ -47,6 +47,11 @@ $palette-colors: (
   "fushia-30": #b80342,
   "fushia-40": #ae23a6,
   "fushia-50": #d3034f,
+  "beige-10": #ffffef,
+  "beige-20": #fff8df,
+  "beige-30": #fff1bf,
+  "beige-40": 	#ffe59e,
+  "beige-50": #ffdd7f,
 );
 
 @function palette-color($key, $alpha: null) {
