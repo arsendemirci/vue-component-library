@@ -75,7 +75,7 @@ const toggleSidebar = () => {
 
 aside{
   position: relative;
-  z-index: 100;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   width: calc(2rem + 32px);
@@ -249,7 +249,7 @@ aside{
 
   @media (max-width: 768px) {
      position: fixed;
-     z-index: 999;
+     z-index: 1;
   }
   button{
     cursor: pointer;
