@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
         <div @click="closeModal" v-if="isOpen" class="modal-mask">
-            <div @click.stop class="modal-container">
+            <div @click.stop class="modal-container" :class="positionOptions[position]">
                 <h2 class="header">
                     <slot name="header"></slot>
                 </h2>
@@ -23,9 +23,17 @@
 <script>
     export default {
         el: "#modal",
+        props: ["position"],
         data() {
             return {
                 isOpen: false,
+                positionOptions: {
+                    top: "position-top",
+                    right: "position-right",
+                    bottom: "position-bottom",
+                    left: "position-left",
+                    center: "position-center"
+                }
             }
         },
         methods: {
@@ -55,12 +63,11 @@
     .modal-container {
     width: palette-space(space-500);
     padding: palette-space(space-10);
-    margin: auto;
     border-radius: palette-radius-level(4);
+    margin: auto;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: palette-color-level(white, 100);
     z-index: 10;
-
     .header {
         font-size: $font-size-h2;
         padding: palette-space(space-5)
@@ -100,5 +107,22 @@
         
     }
 }
+
+    .position-top {
+        margin: auto;
+        margin-top: palette-space(space-20);
+    }
+    .position-right {
+        margin: auto;
+        margin-right: palette-space(space-20);
+    }
+    .position-bottom {
+        margin: auto;
+        margin-bottom: palette-space(space-20);
+    }
+    .position-left {
+        margin: auto;
+        margin-left: palette-space(space-20);
+    }
 }
 </style>
