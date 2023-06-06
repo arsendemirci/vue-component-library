@@ -1,10 +1,10 @@
 <template>
     <Teleport to="body">
         <div @click="closeModal" v-if="isOpen" class="modal-mask">
-            <div @click.stop class="modal-container" :class="positionOptions[position]">
-                <h2 class="header">
+            <div @click.stop class="modal-container" :class="[positionOptions[position], sizeOptions[size]]">
+                <p class="header">
                     <slot name="header"></slot>
-                </h2>
+                </p>
                 <section class="content">
                     <slot name="content"></slot>
                 </section>
@@ -23,7 +23,7 @@
 <script>
     export default {
         el: "#modal",
-        props: ["position"],
+        props: ["position", "size"],
         data() {
             return {
                 isOpen: false,
@@ -33,6 +33,12 @@
                     bottom: "position-bottom",
                     left: "position-left",
                     center: "position-center"
+                },
+                sizeOptions: {
+                    xs: "x-small",
+                    sm: "small",
+                    lg: "large",
+                    xl: "x-large"
                 }
             }
         },
@@ -61,22 +67,23 @@
     // perspective:220px;
 
     .modal-container {
-    width: palette-space(space-500);
+    width: palette-space(space-700);
     padding: palette-space(space-10);
+    font-size: palette-font-size-level(7);
     border-radius: palette-radius-level(4);
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: palette-color-level(white, 100);
     z-index: 10;
     .header {
-        font-size: $font-size-h2;
-        padding: palette-space(space-5)
+        padding: palette-space(space-5);
+        font-weight: $font-weight-bold;
     }
 
     .content {
         padding: palette-space(space-5);
         color: palette-color-level(grey, 30);
-        height: palette-space(space-80);
+        height: palette-space(space-100);
         overflow: auto;
         // scroll styling
         -ms-overflow-style: none;  
@@ -107,7 +114,6 @@
         
     }
 }
-
     .position-top {
         margin: auto;
         margin-top: palette-space(space-20);
@@ -123,6 +129,19 @@
     .position-left {
         margin: auto;
         margin-left: palette-space(space-20);
+    }
+
+    .x-small {  
+        width: palette-space(space-500);      
+    }
+    .small {        
+        width: palette-space(space-600);
+    }
+    .large {    
+        width: palette-space(space-800);    
+    }
+    .x-large {        
+        width: palette-space(space-1000);
     }
 }
 </style>
