@@ -28,6 +28,11 @@ $palette-spaces: (
   "space-300": $space-unit * 30,
   "space-400": $space-unit * 40,
   "space-500": $space-unit * 50,
+  "space-550": $space-unit * 55,
+  "space-600": $space-unit * 60,
+  "space-700": $space-unit * 70,
+  "space-800": $space-unit * 80,
+  "space-1000": $space-unit * 100,
 );
 
 @function palette-space($key) {
