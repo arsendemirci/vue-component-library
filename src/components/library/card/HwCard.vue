@@ -1,30 +1,46 @@
 <template>
   <div class="card-wrapper">
     <div class="card-container">
-      <div class="card-default">
-        <h3>{{ title }}</h3>
-        <div class="card-default-content">
+      <div class="card-advanced">
+        <h1 v-if="$props.cardSectionVisibility.isHeader" class="header">
+          {{ header }}
+        </h1>
+        <h1 v-if="$props.cardSectionVisibility.isTitle" class="title">
+          {{ title }}
+        </h1>
+        <h1 v-if="$props.cardSectionVisibility.isSubtitle" class="subtitle">
+          {{ subtitle }}
+        </h1>
+        <div
+          v-if="$props.cardSectionVisibility.isImage"
+          class="card-image-wrapper"
+        >
+          <img src="../../../assets/1000x300.png" alt="" />
+        </div>
+
+        <div v-if="$props.cardSectionVisibility.isContentText" class="card-content">
           <p>
             {{ contentText }}
           </p>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card-wrapper">
-    <div class="card-container">
-      <div class="card-advanced">
-        <h1 class="header">{{ header }}</h1>
-        <h1 class="title">{{ title }}</h1>
-        <h1 class="subtitle">{{ subtitle }}</h1>
-        <div class="card-image-wrapper">
-          <img src="../../../assets/1000x300.png" alt="" />
-        </div>
-        <button class="hw-button orange">Save</button>
-        <button class="hw-button gray">Cancel</button>
+        <button
+          v-if="$props.cardSectionVisibility.isButtonSave"
+          class="hw-button orange"
+        >
+          Save
+        </button>
+        <button
+          v-if="$props.cardSectionVisibility.isButtonCancel"
+          class="hw-button gray"
+        >
+          Cancel
+        </button>
 
-        <div class="card-footer">
+        <div
+          v-if="$props.cardSectionVisibility.isFooterText"
+          class="card-footer"
+        >
           <p>{{ footerText }}</p>
         </div>
         <!-- <div class="card-flex">
@@ -41,29 +57,32 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import {
   reactive,
   computed,
-  defineProps,
-  defineEmits,
+  //defineProps, auto declaration with lang ts
+  // defineEmits, auto declaration with lang ts
   watch,
   onMounted,
+  PropType,
 } from "vue";
+
 const props = defineProps({
   header: {
     type: String,
     required: true,
+    //default:"Header"
   },
   title: {
     type: String,
     required: true,
   },
-  subtitle: {
+  contentText: {
     type: String,
     required: true,
   },
-  contentText: {
+  subtitle: {
     type: String,
     required: true,
   },
@@ -75,6 +94,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  cardSectionVisibility: {
+    type: Object as PropType<CardSectionVisibility>,
+    required: true,
+  },
 });
 // const state = reactive({
 //   title: "sd",
@@ -84,6 +107,8 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .card-wrapper {
+  margin-top: 10px;
+  box-shadow: dark 1px 1px 1px;
   width: 350px;
   position: relative;
   -webkit-tap-highlight-color: transparent;
