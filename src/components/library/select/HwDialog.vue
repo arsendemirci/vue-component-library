@@ -1,9 +1,9 @@
 <template>
     <Teleport to="body">
         <div @keydown.esc="this.isOpen = false" @click="handleBackdropClick" v-if="isOpen" class="modal-mask">
-            <div @click.stop class="modal-container" :class="[positionOptions[position], sizeOptions[size]]">
+            <div @click.stop class="modal-container" :class="[positionOptions[position], sizeOptions[size]], (animation) ? positionOptions[position] + '-animation' : ''">
                 <p class="header">
-                    <slot name="header">Header</slot>
+                    <slot name="header">Header</slot> 
                 </p>
                 <section class="content">
                     <slot name="content">Content</slot>
@@ -23,9 +23,10 @@
     export default {
         el: "#modal",
         props: { 
-            position: String, 
-            size: String, 
+            position: { type: String, default() { return "center" } }, 
+            size: { type: String, default() { return "md" } }, 
             backdrop: { type: Boolean, default() { return false } },
+            animation: { type: Boolean, default() { return true } },
         },
         data() {
             return {
@@ -65,7 +66,7 @@
             },
             handleBackdropClick() {
                 this.backdrop ? this.isOpen = true : this.isOpen = false
-            }
+            },
         }
     }
 </script>
@@ -92,8 +93,7 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: palette-color-level(white, 100);
     z-index: 10;
-    animation-name: modal-center;
-    animation-duration: 0.5s;
+    
     .header {
         padding: palette-space(space-5);
         font-weight: $font-weight-bold;
@@ -168,26 +168,18 @@
     .position-top {
         margin: auto;
         margin-top: palette-space(space-20);
-        animation-name: modal-top;
-        animation-duration: 0.5s;
     }
     .position-right {
         margin: auto;
         margin-right: palette-space(space-20);
-        animation-name: modal-right;
-        animation-duration: 2s;
     }
     .position-bottom {
         margin: auto;
         margin-bottom: palette-space(space-20);
-        animation-name: modal-bottom;
-        animation-duration: 2s;
     }
     .position-left {
         margin: auto;
         margin-left: palette-space(space-20);
-        animation-name: modal-left;
-        animation-duration: 2s;
     }
 
     // ----- COMPONENT SIZE -----
@@ -206,6 +198,30 @@
     .x-large {        
         width: palette-space(space-1000);
     }
+    // ----- COMPONENT ANIMATIONS -----
+
+    .position-center-animation {
+        animation-name: modal-center;
+        animation-duration: 0.5s;
+    }
+    
+    .position-top-animation {
+        animation-name: modal-top;
+        animation-duration: 0.5s;
+    }
+    .position-right-animation {
+        animation-name: modal-right;
+        animation-duration: 0.5s;
+    }
+    .position-bottom-animation {
+        animation-name: modal-bottom;
+        animation-duration: 0.5s;
+    }
+    .position-left-animation {
+        animation-name: modal-left;
+        animation-duration: 0.5s;
+    }
+    
 
     // ----- ANIMATIONS -----
     @keyframes modal-center {
