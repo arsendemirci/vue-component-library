@@ -4,7 +4,6 @@
     <hr />
     <div>
       /* sections="{"header":value, "visibility":true}" */
-
       <div class="flex">
         <div class="cards-input">
           <hw-card
@@ -18,9 +17,9 @@
             :card-section-visibility="cardSectionVisibility"
           ></hw-card>
         </div>
-        <div class="visibility-inputs flex vertical">
-          <label for="isHeader">
-            <input
+        <div class="visibility-inputs flex vertical static-height">
+          <label class="visibility-label" for="isHeader">
+            <input class="visibility-input"
               type="checkbox"
               id="isHeader"
               name="isHeader"
@@ -28,8 +27,8 @@
             />Header</label
           >
 
-          <label for="isTitle"
-            ><input
+          <label class="visibility-label" for="isTitle"
+            ><input class="visibility-input"
               type="checkbox"
               id="isTitle"
               name="isTitle"
@@ -37,8 +36,8 @@
             />Title</label
           >
 
-          <label for="isSubtitle"
-            ><input
+          <label class="visibility-label" for="isSubtitle"
+            ><input class="visibility-input"
               type="checkbox"
               id="isSubtitle"
               name="isSubtitle"
@@ -46,8 +45,8 @@
             />Subtitle</label
           >
 
-          <label for="isImage"
-            ><input
+          <label class="visibility-label" for="isImage"
+            ><input class="visibility-input"
               type="checkbox"
               id="isImage"
               name="isImage"
@@ -55,8 +54,8 @@
             />Image</label
           >
 
-          <label for="isContentText"
-            ><input
+          <label class="visibility-label" for="isContentText"
+            ><input class="visibility-input"
               type="checkbox"
               id="isContentText"
               name="isContentText"
@@ -64,8 +63,8 @@
             />ContentText</label
           >
 
-          <label for="isButtonSave"
-            ><input
+          <label class="visibility-label" for="isButtonSave"
+            ><input class="visibility-input"
               type="checkbox"
               id="isButtonSave"
               name="isButtonSave"
@@ -73,8 +72,8 @@
             />ButtonSave</label
           >
 
-          <label for="isButtonCancel">
-            <input
+          <label class="visibility-label" for="isButtonCancel">
+            <input class="visibility-input"
               type="checkbox"
               id="isButtonCancel"
               name="isButtonCancel"
@@ -82,17 +81,17 @@
             />ButtonCancel</label
           >
 
-          <label for="isFooterText">
-            <input
+          <label class="visibility-label" for="isFooterText">
+            <input class="visibility-input"
               type="checkbox"
               id="isFooterText"
               name="isFooterText"
               v-model="cardSectionVisibility.isFooterText"
             />FooterText</label
           >
-          
-          <label for="isAccordionText">
-            <input
+
+          <label class="visibility-label" for="isAccordionText">
+            <input class="visibility-input"
               type="checkbox"
               id="isAccordionText"
               name="isAccordionText"
@@ -114,7 +113,7 @@ export default (await import("vue")).defineComponent({
       title: "Title",
       subtitle: "Subtitle",
       contentText:
-        "Content lorem ipsum dolor sit amet consectetur adipisicing elit.            Nemo laudantium magnam, aut illum libero, harum enim quas magni vel            doloremque dolorus",
+        "Content lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium magnam, aut illum libero, harum enim quas magni vel doloremque dolorus",
       footerText: "Here is footer text",
       accordionText:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam voluptatum, voluptatibus.",
@@ -127,7 +126,7 @@ export default (await import("vue")).defineComponent({
         isButtonSave: true,
         isButtonCancel: true,
         isFooterText: true,
-        isAccordionText: true
+        isAccordionText: true,
       },
     };
   },
@@ -149,11 +148,18 @@ export default (await import("vue")).defineComponent({
   flex-direction: row;
   justify-content: space-evenly;
 }
-
+.visibility-label{
+  margin: palette-space-level(10) 0px;
+}
+.visibility-input{
+  margin: 0px palette-space-level(5);
+}
+.visibility-inputs.static-height {
+  height: 450px;
+}
 .vertical {
   flex-direction: column;
-  justify-content:space-evenly;
-  
+  justify-content: center;
 }
 .wrapper {
   display: flex;
@@ -184,6 +190,8 @@ export default (await import("vue")).defineComponent({
     background: floralwhite;
     width: 100%;
     max-width: 1000px;
+    max-height: 700px;
+
     .v-model {
       .value {
         font-weight: palette-font-weight-level(5);
