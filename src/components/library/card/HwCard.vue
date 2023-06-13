@@ -18,40 +18,55 @@
           <img src="../../../assets/1000x300.png" alt="" />
         </div>
 
-        <div v-if="$props.cardSectionVisibility.isContentText" class="card-content">
+        <div
+          v-if="$props.cardSectionVisibility.isContentText"
+          class="card-content"
+        >
           <p>
             {{ contentText }}
           </p>
         </div>
 
-        <button
-          v-if="$props.cardSectionVisibility.isButtonSave"
-          class="hw-button orange"
-        >
-          Save
-        </button>
-        <button
-          v-if="$props.cardSectionVisibility.isButtonCancel"
-          class="hw-button gray"
-        >
-          Cancel
-        </button>
-
-        <div
-          v-if="$props.cardSectionVisibility.isFooterText"
-          class="card-footer"
-        >
-          <p>{{ footerText }}</p>
+        <div class="card-buttons">
+          <button
+            v-if="$props.cardSectionVisibility.isButtonSave"
+            class="hw-button orange"
+          >
+            Save
+          </button>
+          <button
+            v-if="$props.cardSectionVisibility.isButtonCancel"
+            class="hw-button gray"
+          >
+            Cancel
+          </button>
         </div>
-        <!-- <div class="card-flex">
-          <button class="button-mini flex-right"><i>🔽</i></button>
-        </div> -->
-        <div class="card-accordion-wrapper" style="visibility: none">
+
+        <div class="card-footer flex">
+          <div
+            v-if="$props.cardSectionVisibility.isFooterText"
+            class="footer-text-wrapper"
+          >
+            <p>{{ footerText }}</p>
+          </div>
+          <div v-if="$props.cardSectionVisibility.isAccordionText">
+            <button @click="state.accordionToggle = !state.accordionToggle" class="button-mini"><i>↓</i></button>
+          </div>
+        </div>
+        <Transition>
+          <div
+          v-if="$props.cardSectionVisibility.isAccordionText && state.accordionToggle"
+          class="card-accordion-wrapper"
+          style="visibility: none"
+          active
+        >
           <hr class="hw-divider" />
           <p class="accordion-text">
             {{ accordionText }}
           </p>
         </div>
+        </Transition>
+
       </div>
     </div>
   </div>
@@ -67,6 +82,7 @@ import {
   onMounted,
   PropType,
 } from "vue";
+import "../../../stores/interface/CardSectionVisibility";
 
 const props = defineProps({
   header: {
@@ -99,13 +115,27 @@ const props = defineProps({
     required: true,
   },
 });
-// const state = reactive({
-//   title: "sd",
-//   accordionToggle: false,
-// });
+const state = reactive({
+  accordionToggle: false,
+});
 </script>
 
 <style scoped lang="scss">
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .card-wrapper {
   margin-top: 10px;
   box-shadow: dark 1px 1px 1px;
@@ -158,6 +188,9 @@ const props = defineProps({
           width: 100%;
         }
       }
+      .card-buttons{
+        padding-bottom: palette-space-level(20);
+      }
     }
   }
   .hw-button {
@@ -178,31 +211,14 @@ const props = defineProps({
   }
 
   .card-footer {
-    padding-top: palette-space-level(20);
-    padding-bottom: palette-space-level(10);
     p {
       font-weight: palette-font-weight-level(5);
     }
-  }
-  .card-flex {
-    //one item one line flex
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: palette-space-level(20);
-  }
-
-  .button-mini {
-    width: 30px;
-    height: 30px;
-    border: solid palette-color-level(grey, 15);
-    border-radius: palette-radius-level(5);
   }
 
   .hw-divider {
     margin: 0;
     width: 100%;
-    height: 1px;
-    background-color: #000;
   }
 
   .card-accordion-wrapper {

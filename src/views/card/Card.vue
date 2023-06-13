@@ -81,10 +81,27 @@
               v-model="cardSectionVisibility.isButtonCancel"
             />ButtonCancel</label
           >
+
+          <label for="isFooterText">
+            <input
+              type="checkbox"
+              id="isFooterText"
+              name="isFooterText"
+              v-model="cardSectionVisibility.isFooterText"
+            />FooterText</label
+          >
+          
+          <label for="isAccordionText">
+            <input
+              type="checkbox"
+              id="isAccordionText"
+              name="isAccordionText"
+              v-model="cardSectionVisibility.isAccordionText"
+            />AccordionText</label
+          >
         </div>
       </div>
     </div>
-    <p>{{ cardSectionVisibility.header }}</p>
   </div>
 </template>
 
@@ -98,7 +115,7 @@ export default (await import("vue")).defineComponent({
       subtitle: "Subtitle",
       contentText:
         "Content lorem ipsum dolor sit amet consectetur adipisicing elit.            Nemo laudantium magnam, aut illum libero, harum enim quas magni vel            doloremque dolorus",
-      footerText: "Here is footer text lorem ipsum dolor sit amet",
+      footerText: "Here is footer text",
       accordionText:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam voluptatum, voluptatibus.",
       cardSectionVisibility: {
@@ -109,6 +126,8 @@ export default (await import("vue")).defineComponent({
         isContentText: true,
         isButtonSave: true,
         isButtonCancel: true,
+        isFooterText: true,
+        isAccordionText: true
       },
     };
   },

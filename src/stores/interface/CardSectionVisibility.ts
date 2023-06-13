@@ -7,4 +7,5 @@ interface CardSectionVisibility<T= Boolean>{
     isButtonSave: T,
     isButtonCancel: T,
     isFooterText: T,
+    isAccordionText: T
   }
