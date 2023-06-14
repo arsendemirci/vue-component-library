@@ -9,8 +9,8 @@
                     <slot name="content">Content</slot>
                 </section>
                 <footer class="footer">
-                    <button class="footer-btn"><slot name="footer-agree">Agree</slot></button>
-                    <button @click="closeModal" class="footer-btn"><slot name="footer-cancel">Cancel</slot></button>
+                    <button class="footer-btn"><slot name="footer-agree"></slot></button>
+                    <button @click="closeModal" class="footer-btn"><slot name="footer-cancel"></slot></button>
                 </footer>
             </div> 
         </div>  
@@ -93,7 +93,7 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: palette-color-level(white, 100);
     z-index: 10;
-    
+
     .header {
         padding: palette-space(space-5);
         font-weight: $font-weight-bold;

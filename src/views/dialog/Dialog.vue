@@ -6,8 +6,8 @@
         Itaque odio autem odit magni illum? Ipsum sapiente, aliquam id voluptatibus cumque odit molestiae sit corrupti quos, placeat quas tempore magni quibusdam quidem, dignissimos nulla ab asperiores illum reprehenderit minima.  
         </template>
         
-        <template v-slot:footer-agree></template>
-        <template v-slot:footer-cancel></template>
+        <template v-slot:footer-agree>Agree</template>
+        <template v-slot:footer-cancel>Cancel</template>
     
     </HwDialog>
 </template>
