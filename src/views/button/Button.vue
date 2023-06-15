@@ -146,10 +146,10 @@
                 <code class="language-html">
                     &lt;hw-button 
                     :handler="" 
-                    :size="{{ size }}" 
-                    :btnStyle="{{ btnStyle }}" 
-                    :shape="{{ shape }}"
-                    :btnColor="{{ btnColor }}"<span v-if="disableElevation === 'true'">
+                    size="{{ size }}" 
+                    btnStyle="{{ btnStyle }}" 
+                    shape="{{ shape }}"
+                    btnColor="{{ btnColor }}"<span v-if="disableElevation === 'true'">
                     disableElevation </span><span v-if="disabled === 'true'">
                     disabled </span>
                     :spacing="{{ spacing  }}"&gt;<span v-if="btnText !== ''">
