@@ -122,7 +122,7 @@
                 <span v-if="!showBtn">Told you.</span>
             </div>
         </div>
-        <div class="card">
+        <div class="card btn-generator">
             <h2>Button Generator</h2>
             <p>Change the values and see the outcome.</p>
             <label>size: </label>
@@ -138,9 +138,26 @@
             <label>disabled: </label>
             <hw-select :options="booleanOptions" v-model="disabled"></hw-select>
             <label>spacing: </label>
-            <input v-model="spacing" style="width: 260px;height: 30px;padding-left: 15px;font-size: 16px;font-weight: bold;"/>
+            <input v-model="spacing"/>
             <label>Button text: </label>
-            <input v-model="btnText" style="width: 260px;height: 30px;padding-left: 15px;font-size: 16px;font-weight: bold;"/>
+            <input v-model="btnText"/>
+            <p><b>Copy the code below to start using your button now!(btw you need to send your handler to button)</b></p>
+            <pre>
+                <code class="language-html">
+                    &lt;hw-button 
+                    :handler="" 
+                    :size="{{ size }}" 
+                    :btnStyle="{{ btnStyle }}" 
+                    :shape="{{ shape }}"
+                    :btnColor="{{ btnColor }}"<span v-if="disableElevation === 'true'">
+                    disableElevation </span><span v-if="disabled === 'true'">
+                    disabled </span>
+                    :spacing="{{ spacing  }}"&gt;<span v-if="btnText !== ''">
+                        &lt;p&gt;{{ btnText }}&lt;/p&gt;</span>
+                        &lt;fa icon="sliders"&gt;&lt;/fa&gt;
+                    &lt;/hw-button&gt;
+                </code>
+            </pre>
             <div class="btn-container">
                 <hw-button :handler="logHandler" :size="size" :btnStyle="btnStyle" :shape="shape" :btnColor="btnColor" :disableElevation="disableElevation === 'true' ? true : false" :disabled="disabled === 'true' ? true : false" :spacing="spacing">
                     <p v-if="btnText !== ''">{{ btnText }}</p>
@@ -250,6 +267,20 @@ export default {
         background-color: white;
         border-radius: inherit;
         width: fit-content;
+    }
+  }
+  .btn-generator{
+    input{
+        width: 260px;
+        height: 30px;
+        padding-left: 15px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    pre{
+        background-color: palette-color-level(primary-dark, 100);
+        color:palette-color-level(primary-light, 100);
+        white-space: pre-wrap;
     }
   }
 }

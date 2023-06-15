@@ -13,19 +13,33 @@
        </div>
       <div class="card-body">
         <div class="card-pre">
-<pre>
-    <code class="language-html">
-        &lt;hw-button :handler="handleClick"&gt;
-            &lt;p&gt;Click Me&lt;/p&gt;
-        &lt;/hw-button&gt;
-    </code>
-</pre>
+          <pre>
+              <code class="language-html">
+                <p style="color: gray;margin-left: 30px;">// Text Button</p>
+                &lt;hw-button :handler="handleClick"&gt;
+                &lt;p&gt;Click Me&lt;/p&gt;
+                &lt;/hw-button&gt;
+                
+                <p style="color: gray;margin-left: 30px;">// Icon Button</p>
+                &lt;hw-button :handler="handleClick"&gt;
+                  &lt;fa icon="code"&gt;&lt;/fa&gt;
+                &lt;/hw-button&gt;
+
+                <p style="color: gray;margin-left: 30px;">// Both</p>
+                &lt;hw-button :handler="handleClick"&gt;
+                  &lt;p&gt;Click Me&lt;/p&gt;
+                  &lt;fa icon="code"&gt;&lt;/fa&gt;
+                &lt;/hw-button&gt;
+              </code>
+          </pre>
       </div>
       </div>
        <div class="card-body">
-        <p class="card-text">Which would return this simple button.</p>
+        <p class="card-text">Which would return these default buttons.</p>
         <div style="display:flex;align-items: center;justify-content: flex-start;">
             <hw-button :handler="handleClick"><p>Click Me</p></hw-button>
+            <hw-button :handler="handleClick"><fa icon="code"></fa></hw-button>
+            <hw-button :handler="handleClick"><p>Click Me</p><fa icon="code"></fa></hw-button>
             <div v-if="isVisibleHiddenDiv">Nice click 👍</div>
         </div>
        </div>
