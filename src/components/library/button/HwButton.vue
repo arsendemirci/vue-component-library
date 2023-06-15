@@ -190,8 +190,8 @@ const mouseUpHandler = (e) => {
   font-size: 1rem;
 }
 .xsmall.circle{
-  min-height: 24px;
-  min-width: 24px;
+  height: 32px;
+  width: 32px;
   padding: 8px;
   font-size: 1rem;
 }
@@ -202,8 +202,8 @@ const mouseUpHandler = (e) => {
   font-size: 1.1rem;
 }
 .small.circle{
-  min-height: 30px;
-  min-width: 30px;
+  height: 38px;
+  width: 38px;
   padding: 10px;
   font-size: 1.2rem;
 }
@@ -214,8 +214,8 @@ const mouseUpHandler = (e) => {
   font-size: 1.3rem;
 }
 .medium.circle{
-  min-height: 36px;
-  min-width: 36px;
+  height: 44px;
+  width: 44px;
   padding: 12px;
   font-size: 1.4rem;
 }
@@ -226,8 +226,8 @@ const mouseUpHandler = (e) => {
   font-size: 1.4rem;
 }
 .large.circle{
-  min-height: 42px;
-  min-width: 42px;
+  height: 50px;
+  width: 50px;
   padding: 14px;
   font-size: 1.6rem;
 }
@@ -238,8 +238,8 @@ const mouseUpHandler = (e) => {
   font-size: 1.5rem;
 }
 .xlarge.circle{
-  min-height: 48px;
-  min-width: 48px;
+  height: 56px;
+  width: 56px;
   padding: 16px;
   font-size: 1.8rem;
 }

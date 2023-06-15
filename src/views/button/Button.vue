@@ -40,7 +40,7 @@
         </div>
         <div class="card">
             <h2>Shape</h2>
-            <p>Flat, round and circle shapes can be used. Circle is advised to be used with square ratioed (for example 16x16) icons.</p>
+            <p>Flat, round and circle shapes can be used. Circle is advised to be used with icons.</p>
             <div class="btn-container">
                 <hw-button size="medium" :handler="logHandler" btnStyle="primary" shape="flat">
                     <p>flat</p>
