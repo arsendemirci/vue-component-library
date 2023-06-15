@@ -97,10 +97,8 @@ const validateProps = () => {
 }
 const adjustSpacing = () => {
   const childNodes = contentDiv._value.children;
-  // Reset old margin values of every child for reacting to changes in number of content elements
-  for(let i=0; i < childNodes.length; i++){
-    childNodes[i].style.marginLeft = '0px'
-  }
+  // Reset margin values for reacting to changes in content elements
+  childNodes[0].style.marginLeft = '0px'
   for(let i=1; i < childNodes.length; i++){
     childNodes[i].style.marginLeft = `${state.spacing}px`
   }
