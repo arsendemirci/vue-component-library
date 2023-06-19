@@ -101,13 +101,10 @@ export default {
 
     setBackdrop(event) {
       this.selectedBackdrop = event.target.value
-      console.log(this.selectedBackdrop);
-      // return this.selectedBackdrop
     },
 
     setAnimation(selectedAnimation) {
       this.selectedAnimation = selectedAnimation
-      console.log(this.selectedAnimation);
     }
   },
   components: { HwDialog, DialogDemo }

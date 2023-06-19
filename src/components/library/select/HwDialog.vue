@@ -51,8 +51,7 @@
             var _self = this;
 
                 document.addEventListener('keydown', function (e) {
-                    if (e.keyCode == 27) {
-                        console.log(_self.isOpen);
+                    if (e.keyCode == 27 && !_self.backdrop) {
                         _self.isOpen = false;
                     }
                 })
