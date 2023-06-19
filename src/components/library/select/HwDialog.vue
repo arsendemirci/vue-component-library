@@ -16,7 +16,7 @@
         </div>  
     </Teleport>
 
-    <button @click="openModal">click</button>
+    <button class="modal-button" @click="openModal">Open Dialog</button>
 </template>
 
 <script>
@@ -279,6 +279,20 @@
             margin: auto;
             margin-bottom: palette-space(space-20);
         }
+    }
+}
+
+.modal-button {
+    width: palette-space(space-200);
+    height: palette-space(space-40);
+    border-radius: palette-radius-level(4);
+    border: none;
+    cursor: pointer;
+    margin: auto;
+
+    &:hover {
+        color: palette-color-level(primary, 100);
+        background-color: palette-color-level(grey, 70);
     }
 }
 </style>
