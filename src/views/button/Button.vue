@@ -125,23 +125,35 @@
         <div class="card btn-generator">
             <h2>Button Generator</h2>
             <p>Change the values and see the outcome.</p>
-            <label>size: </label>
-            <hw-select :options="sizeOptions" v-model="size"></hw-select>
-            <label>btnStyle: </label>
-            <hw-select :options="styleOptions" v-model="btnStyle"></hw-select>
-            <label>shape: </label>
-            <hw-select :options="shapeOptions" v-model="shape"></hw-select>
-            <label>btnColor: </label>
-            <hw-select :options="colorOptions" v-model="btnColor"></hw-select>
-            <label>disableElevation: </label>
-            <hw-select :options="booleanOptions" v-model="disableElevation"></hw-select>
-            <label>disabled: </label>
-            <hw-select :options="booleanOptions" v-model="disabled"></hw-select>
-            <label>spacing: </label>
-            <input v-model="spacing"/>
-            <label>Button text: </label>
-            <input v-model="btnText"/>
-            <p><b>Copy the code below to start using your button now!(btw you need to send your handler to button)</b></p>
+            <div class="flex-row">
+                <div class="flex-col" style="width: 300px;">
+                    <label>size: </label>
+                    <hw-select :options="sizeOptions" v-model="size"></hw-select>
+                    <br/>
+                    <label>btnStyle: </label>
+                    <hw-select :options="styleOptions" v-model="btnStyle"></hw-select>
+                    <br/>
+                    <label>shape: </label>
+                    <hw-select :options="shapeOptions" v-model="shape"></hw-select>
+                    <br/>
+                    <label>btnColor: </label>
+                    <hw-select :options="colorOptions" v-model="btnColor"></hw-select>
+                </div>
+                <div class="flex-col" style="width: 300px;">
+                    <label>disableElevation: </label>
+                    <hw-select :options="booleanOptions" v-model="disableElevation"></hw-select>
+                    <br/>
+                    <label>disabled: </label>
+                    <hw-select :options="booleanOptions" v-model="disabled"></hw-select>
+                    <br/>
+                    <label>spacing: </label>
+                    <input v-model="spacing"/>
+                    <br/>
+                    <label>Button text: </label>
+                    <input v-model="btnText"/>
+                </div>
+            </div>
+            <p>Copy the code below to start using your button now! (btw you need to send your handler to button and replace the icon with yours)</p>
             <pre>
                 <code class="language-html">
                     &lt;hw-button 
@@ -163,7 +175,6 @@
                     <p v-if="btnText !== ''">{{ btnText }}</p>
                     <fa icon="sliders"></fa>
                 </hw-button>
-                <span v-if="!showBtn">Told you.</span>
             </div>
         </div>
     </div>
@@ -238,31 +249,6 @@ export default {
     background: floralwhite;
     width: 100%;
     max-width: 1000px;
-    // .v-model {
-    //   .value {
-    //     font-weight: palette-font-weight-level(5);
-    //     font-size: large;
-    //   }
-    // }
-
-    // .option {
-    //   display: flex;
-
-    //   &:hover {
-    //     .option-value {
-    //       border-color: palette-color-level(white, 100);
-    //       border-width: palette-space-level(4);
-    //     }
-    //   }
-    //   &-value {
-    //     padding-right: palette-space-level(10);
-    //     border-right: 1px solid palette-color-level(primary-alt, 100);
-    //     transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25);
-    //   }
-    //   &-text {
-    //     padding-left: palette-space-level(10);
-    //   }
-    // }
     .btn-container{
         background-color: white;
         border-radius: inherit;
@@ -272,16 +258,37 @@ export default {
   .btn-generator{
     input{
         width: 260px;
-        height: 30px;
+        height: 41px;
         padding-left: 15px;
         font-size: 16px;
         font-weight: bold;
+        border-radius: palette-radius-level(3);
+        border: 1px solid palette-color-level(grey, 15);
+        box-shadow: none;
+        transition: all 0.24s ease-in-out;
+        &:focus{
+            border-color: palette-color-level(primary, 100);
+            box-shadow: 0 0 10px palette-color-level(primary, 100);
+            outline: none;
+        }
+    }
+    label{
+        color: palette-color-level(primary, 100);
     }
     pre{
         background-color: palette-color-level(primary-dark, 100);
         color:palette-color-level(primary-light, 100);
         white-space: pre-wrap;
+        border-radius:  palette-radius-level(3);
     }
   }
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
 }
 </style>

@@ -244,9 +244,9 @@ const mouseUpHandler = (e) => {
   font-size: 1.8rem;
 }
 .flat{
-  border-radius: 4px;
+  border-radius: palette-radius-level(2);
   .click-animation{
-    border-radius: 4px;
+    border-radius: palette-radius-level(2);
   }
 }
 .round{
