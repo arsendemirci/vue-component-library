@@ -1,10 +1,15 @@
 <template>
   <div class="wrapper" @click="checkboxIsHeadern">
     <h1 slot="header">Card Components</h1>
+    <card-demo></card-demo>
     <hr />
-    <div>
-      <div class="flex">
-        <div class="cards-input">
+    <div class="example1">
+      <h2>Single Card</h2>
+      <p>
+        <p>This demo example showcases single card display</p>
+      </p>
+      <div class="flex container">
+        <div class="cards-input card-wrapper">
           <hw-card
             type="simple"
             :header="header"
@@ -18,7 +23,8 @@
         </div>
         <div class="visibility-inputs flex vertical static-height">
           <label class="visibility-label" for="isHeader">
-            <input class="visibility-input"
+            <input
+              class="visibility-input"
               type="checkbox"
               id="isHeader"
               name="isHeader"
@@ -27,7 +33,8 @@
           >
 
           <label class="visibility-label" for="isTitle"
-            ><input class="visibility-input"
+            ><input
+              class="visibility-input"
               type="checkbox"
               id="isTitle"
               name="isTitle"
@@ -36,7 +43,8 @@
           >
 
           <label class="visibility-label" for="isSubtitle"
-            ><input class="visibility-input"
+            ><input
+              class="visibility-input"
               type="checkbox"
               id="isSubtitle"
               name="isSubtitle"
@@ -45,7 +53,8 @@
           >
 
           <label class="visibility-label" for="isImage"
-            ><input class="visibility-input"
+            ><input
+              class="visibility-input"
               type="checkbox"
               id="isImage"
               name="isImage"
@@ -54,7 +63,8 @@
           >
 
           <label class="visibility-label" for="isContentText"
-            ><input class="visibility-input"
+            ><input
+              class="visibility-input"
               type="checkbox"
               id="isContentText"
               name="isContentText"
@@ -63,7 +73,8 @@
           >
 
           <label class="visibility-label" for="isButtonSave"
-            ><input class="visibility-input"
+            ><input
+              class="visibility-input"
               type="checkbox"
               id="isButtonSave"
               name="isButtonSave"
@@ -72,7 +83,8 @@
           >
 
           <label class="visibility-label" for="isButtonCancel">
-            <input class="visibility-input"
+            <input
+              class="visibility-input"
               type="checkbox"
               id="isButtonCancel"
               name="isButtonCancel"
@@ -81,7 +93,8 @@
           >
 
           <label class="visibility-label" for="isFooterText">
-            <input class="visibility-input"
+            <input
+              class="visibility-input"
               type="checkbox"
               id="isFooterText"
               name="isFooterText"
@@ -90,7 +103,8 @@
           >
 
           <label class="visibility-label" for="isAccordionText">
-            <input class="visibility-input"
+            <input
+              class="visibility-input"
               type="checkbox"
               id="isAccordionText"
               name="isAccordionText"
@@ -100,11 +114,57 @@
         </div>
       </div>
     </div>
+
+    <div class="example2">
+      <h2>Multiple Card</h2>
+      <p>
+        This demo example showcases multiple card display feature that allows you to view multiple cards at once in a visually appealing way.
+      </p>
+      <div class="flex container">
+        <div class="card-wrapper">
+          <hw-card
+            type="simple"
+            :header="header"
+            :title="title"
+            :subtitle="subtitle"
+            :content-text="contentText"
+            :footer-text="footerText"
+            :accordion-text="accordionText"
+            :card-section-visibility="cardSectionVisibility"
+          ></hw-card>
+        </div>
+        <div class="card-wrapper">
+          <hw-card
+            type="simple"
+            :header="header"
+            :title="title"
+            :subtitle="subtitle"
+            :content-text="contentText"
+            :footer-text="footerText"
+            :accordion-text="accordionText"
+            :card-section-visibility="cardSectionVisibility"
+          ></hw-card>
+        </div>
+        <div class="card-wrapper">
+          <hw-card
+            type="simple"
+            :header="header"
+            :title="title"
+            :subtitle="subtitle"
+            :content-text="contentText"
+            :footer-text="footerText"
+            :accordion-text="accordionText"
+            :card-section-visibility="cardSectionVisibility"
+          ></hw-card>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import HwCard from "@lib/card/HwCard.vue";
+import CardDemo from "./CardDemo.vue";
 export default (await import("vue")).defineComponent({
   data() {
     return {
@@ -131,6 +191,7 @@ export default (await import("vue")).defineComponent({
   },
   components: {
     HwCard,
+    CardDemo,
   },
   methods: {
     checkboxIsHeadern() {
@@ -142,15 +203,24 @@ export default (await import("vue")).defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.container{
+  margin-top: palette-space-level(10);
+  margin-bottom: palette-space-level(10);
+}
 .flex {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
+  .flex-example-2{
+    flex: 1 0 21%; 
+    }
 }
-.visibility-label{
+.visibility-label {
   margin: palette-space-level(10) 0px;
 }
-.visibility-input{
+.visibility-input {
   margin: 0px palette-space-level(5);
 }
 .visibility-inputs.static-height {
@@ -159,6 +229,7 @@ export default (await import("vue")).defineComponent({
 .vertical {
   flex-direction: column;
   justify-content: center;
+  align-items: start;
 }
 .wrapper {
   display: flex;
@@ -189,7 +260,6 @@ export default (await import("vue")).defineComponent({
     background: floralwhite;
     width: 100%;
     max-width: 1000px;
-    max-height: 700px;
 
     .v-model {
       .value {

@@ -4,18 +4,27 @@
       <div class="card-container">
         <div class="card-advanced">
           <Transition>
-            <h1 v-if="$props.cardSectionVisibility.isHeader" class="header">
+            <h1
+              v-if="$props.cardSectionVisibility.isHeader"
+              class="header card-content"
+            >
               {{ header }}
             </h1>
           </Transition>
           <Transition>
-            <h1 v-if="$props.cardSectionVisibility.isTitle" class="title">
+            <h1
+              v-if="$props.cardSectionVisibility.isTitle"
+              class="title card-content"
+            >
               {{ title }}
             </h1>
           </Transition>
 
           <Transition>
-            <h1 v-if="$props.cardSectionVisibility.isSubtitle" class="subtitle">
+            <h1
+              v-if="$props.cardSectionVisibility.isSubtitle"
+              class="subtitle card-content"
+            >
               {{ subtitle }}
             </h1>
           </Transition>
@@ -23,7 +32,7 @@
           <Transition>
             <div
               v-if="$props.cardSectionVisibility.isImage"
-              class="card-image-wrapper"
+              class="card-image-wrapper card-content"
             >
               <img src="../../../assets/1000x300.png" alt="" />
             </div>
@@ -31,14 +40,14 @@
           <Transition>
             <div
               v-if="$props.cardSectionVisibility.isContentText"
-              class="card-content"
+              class="card-content contentItem card-content"
             >
               <p>
                 {{ contentText }}
               </p>
             </div>
           </Transition>
-          <div class="card-buttons">
+          <div class="card-buttons card-content">
             <Transition>
               <button
                 v-if="$props.cardSectionVisibility.isButtonSave"
@@ -56,7 +65,7 @@
               </button>
             </Transition>
           </div>
-          <div class="card-footer flex">
+          <div class="card-footer flex card-content">
             <Transition>
               <div
                 v-if="$props.cardSectionVisibility.isFooterText"
@@ -65,10 +74,12 @@
                 <p>{{ footerText }}</p>
               </div>
             </Transition>
-            <hr
-              v-if="$props.cardSectionVisibility.isAccordionText"
-              class="hw-divider"
-            />
+            <Transition>
+              <hr
+                v-if="$props.cardSectionVisibility.isAccordionText"
+                class="hw-divider"
+              />
+            </Transition>
             <Transition>
               <div v-if="$props.cardSectionVisibility.isAccordionText">
                 <button
@@ -86,7 +97,7 @@
                 $props.cardSectionVisibility.isAccordionText &&
                 state.accordionToggle
               "
-              class="card-accordion-wrapper ease"
+              class="card-accordion-wrapper ease card-content"
             >
               <div>
                 <p
@@ -154,6 +165,9 @@ const state = reactive({
 </script>
 
 <style scoped lang="scss">
+.card-content {
+  padding-bottom: palette-space-level(5);
+}
 .v-enter-from {
   opacity: 0;
   transform: scale(0.9);
@@ -212,7 +226,7 @@ const state = reactive({
   align-items: center;
 }
 .card-wrapper {
-  margin-top: 10px;
+  position: relative;
   width: 350px;
   -webkit-tap-highlight-color: transparent;
   background-color: palette-color-level(white, 100);
@@ -220,6 +234,7 @@ const state = reactive({
   border: solid 1px palette-color-level(grey, 15);
   box-sizing: border-box;
   clear: both;
+  margin-bottom: palette-space-level(50);
   //FIXME: display block not fit for card elements.(in one line may one ore more cards)
   //display: block
   font-family: inherit;
@@ -228,7 +243,6 @@ const state = reactive({
   line-height: 40px;
   padding: palette-space-level(15) palette-space-level(15) 0
     palette-space-level(15);
-  position: static;
   text-align: left !important;
   user-select: none;
   white-space: normal;
@@ -237,7 +251,6 @@ const state = reactive({
   -moz-box-shadow: -3px -2px 15px 7px rgba(0, 0, 0, 0.425);
   box-shadow: 0px -2px 7px 2px rgba(0, 0, 0, 0.35);
   .card-container {
-    height: auto;
     p {
       line-height: palette-space-level(20);
       font-weight: palette-font-weight-level(3);
@@ -260,13 +273,9 @@ const state = reactive({
         line-height: palette-space-level(20);
       }
       .card-image-wrapper {
-        padding-bottom: palette-space-level(10);
         img {
           width: 100%;
         }
-      }
-      .card-buttons {
-        padding-bottom: palette-space-level(10);
       }
     }
   }
@@ -288,8 +297,8 @@ const state = reactive({
   }
 
   .card-footer {
+    padding: palette-space-level(5) 0;
     position: relative;
-    padding-bottom: palette-space-level(5);
     p {
       font-weight: palette-font-weight-level(5);
     }
@@ -300,16 +309,29 @@ const state = reactive({
     bottom: -1px;
     left: -15px;
     width: 110%;
-    border: 1.3px ridge rgba($color: #393939, $alpha: 0.2)
+    border: 1.3px ridge rgba($color: #393939, $alpha: 0.2);
   }
 
   .card-accordion-wrapper {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    background-color: palette-color-level(white, 100);
     .accordion-text {
-      font-size: palette-font-size-level(4);
-      margin-top:palette-space-level(10) ;
-      margin-bottom:palette-space-level(15) ;
+      padding: palette-padding-level(10, 10, 10, 10);
+      margin-top: palette-space-level(5);
+      border-bottom-left-radius: palette-radius-level(5);
+      border-bottom-right-radius: palette-radius-level(5);
       font-weight: palette-font-weight-level(3);
-      line-height: palette-space-level(25);
+      font-size: palette-font-size-level(4);
+      line-height: palette-space-level(15);
+      background-color: palette-color-level(orange, 10);
+      -webkit-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -moz-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   }
 }
