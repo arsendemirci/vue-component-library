@@ -1,48 +1,54 @@
 <template>
- <aside :class="`${is_expanded && 'is_expanded'}`">
-   <div class="logo">
-     <img alt="Vue logo" src="@/assets/logo.svg"/>
-   </div>
-  <div class="menu-toggle-wrap">
-    <button class="menu-toggle" @click="toggleMenu">
-      <fa class="fa-icons" icon="arrow-right-to-bracket" />
-    </button>
-  </div>
+  <aside :class="`${is_expanded && 'is_expanded'}`">
+    <div class="logo">
+      <img alt="Vue logo" src="@/assets/logo.svg" />
+    </div>
+    <div class="menu-toggle-wrap">
+      <button class="menu-toggle" @click="toggleMenu">
+        <fa class="fa-icons" icon="arrow-right-to-bracket" />
+      </button>
+    </div>
 
-   <h3>Menu</h3>
-   <div class="menu">
-     <router-link class="button" to="/">
-       <fa class="fa-icons" icon="house" />
-       <span class="text">Introduction</span>
-     </router-link>
-     <router-link class="button" to="/components" @click="toggleSidebar">
-       <fa class="fa-icons" icon="bandage" />
-       <span class="text">Components</span>
-       <fa class="fa-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }" icon="arrow-up-short-wide" />
-     </router-link>
-     <ul class="sub-menu" :class="{ 'open-sub-menu': isSidebarOpen }">
-       <li class="sub-menu-header">FORM INPUTS</li>
-       <li class="sub-menu-list">
-         <router-link class="sub-menu-item" to="/buttons">File inputs</router-link>
-         <router-link class="sub-menu-item" to="/forms">Forms</router-link>
-         <router-link class="sub-menu-item" to="/selects">Selects</router-link>
-       </li>
-       <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
-       <li class="sub-menu-header">NAVIGATION</li>
-       <li class="sub-menu-list">
-         <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
-         <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
-         <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
-       </li>
-     </ul>
+    <h3>Menu</h3>
+    <div class="menu">
+      <router-link class="button" to="/">
+        <fa class="fa-icons" icon="house" />
+        <span class="text">Introduction</span>
+      </router-link>
+      <router-link class="button" to="/components" @click="toggleSidebar">
+        <fa class="fa-icons" icon="bandage" />
+        <span class="text">Components</span>
+        <fa class="fa-icons sidebar-toggle-btn" :class="{ 'sub-menu-clicked': isSidebarOpen }"
+          icon="arrow-up-short-wide" />
+      </router-link>
+      <ul class="sub-menu" :class="{ 'open-sub-menu': isSidebarOpen }">
+        <li class="sub-menu-header">FORM INPUTS</li>
+        <li class="sub-menu-list">
+          <router-link class="sub-menu-item" to="/buttons">File inputs</router-link>
+          <router-link class="sub-menu-item" to="/forms">Forms</router-link>
+          <router-link class="sub-menu-item" to="/selects">Selects</router-link>
+        </li>
+        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
+        <li class="sub-menu-header">NAVIGATION</li>
+        <li class="sub-menu-list">
+          <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
+          <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
+          <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
+        </li>
+        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
+        <li class="sub-menu-header">CONTAINERS</li>
+        <li class="sub-menu-list">
+          <router-link class="sub-menu-item" to="/card-list">Card List</router-link>
+        </li>
+      </ul>
 
 
-     <router-link class="button" to="/about">
-       <fa class="fa-icons" icon="download" />
-       <span class="text">Installation</span >
-     </router-link>
-   </div>
- </aside>
+      <router-link class="button" to="/about">
+        <fa class="fa-icons" icon="download" />
+        <span class="text">Installation</span>
+      </router-link>
+    </div>
+  </aside>
 </template>
 
 <script setup>
@@ -61,8 +67,7 @@ const toggleSidebar = () => {
 </script>
 
 <style scoped lang="scss">
-
-aside{
+aside {
   position: relative;
   z-index: 100;
   display: flex;
@@ -83,7 +88,7 @@ aside{
     }
   }
 
-  .menu-toggle-wrap{
+  .menu-toggle-wrap {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 1rem;
@@ -91,31 +96,33 @@ aside{
     top: 0;
     transition: .2s ease-out;
 
-    .menu-toggle{
+    .menu-toggle {
       transition: .2s ease-out;
       transform: rotate(-360deg);
 
-      .fa-icons{
-        font-size:  palette-font-size-level(9);
+      .fa-icons {
+        font-size: palette-font-size-level(9);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
-      &:hover{
-        .fa-icons{
+
+      &:hover {
+        .fa-icons {
           color: palette-color-level(primary, 100);
         }
       }
     }
   }
 
-  h3, .menu .text {
+  h3,
+  .menu .text {
     opacity: 0;
     transition: .3s ease-out;
   }
 
-  h3{
+  h3 {
     color: palette-color-level(grey, 30);
-    font-size:  palette-font-size-level(3);
+    font-size: palette-font-size-level(3);
     margin-bottom: .5rem;
     text-transform: uppercase;
   }
@@ -123,16 +130,16 @@ aside{
   .menu {
     margin: 0 -1rem;
 
-    .button{
+    .button {
       position: relative;
-      display:flex;
+      display: flex;
       align-items: center;
       text-decoration: none;
       padding: .5rem 1rem;
       transition: .2s ease-out;
 
-      .fa-icons{
-        font-size:  palette-font-size-level(8);
+      .fa-icons {
+        font-size: palette-font-size-level(8);
         color: palette-color-level(primary-light, 100);
         transition: .2s ease-out;
       }
@@ -142,42 +149,49 @@ aside{
         transition: .2s ease-out;
       }
 
-      &:hover, &.router-link-exact-active{
+      &:hover,
+      &.router-link-exact-active {
         background-color: palette-color-level(primary-dark-alt, 100);
 
-        .fa-icons,.text {
+        .fa-icons,
+        .text {
           color: palette-color-level(primary, 100);
         }
       }
 
-      &.router-link-exact-active{
+      &.router-link-exact-active {
         border-right: 5px solid palette-color-level(primary, 100);
       }
     }
-    .sub-menu{
-    display: none;
+
+    .sub-menu {
+      display: none;
     }
   }
 
-  &.is_expanded{
+  &.is_expanded {
     width: $sidebar-width;
-    .menu-toggle-wrap{
+
+    .menu-toggle-wrap {
       top: -3rem;
-      .menu-toggle{
+
+      .menu-toggle {
         transform: rotate(180deg);
       }
     }
 
-    h3, .menu .text {
+    h3,
+    .menu .text {
       opacity: 1;
     }
 
-    .button{
-      .fa-icons{
+    .button {
+      .fa-icons {
         margin-right: .5rem;
 
       }
     }
+
     .sidebar-toggle-btn {
       position: absolute;
       right: 0;
@@ -188,28 +202,33 @@ aside{
       transition: .2s ease-out;
 
     }
-    .sub-menu{
+
+    .sub-menu {
       transition: .2s ease-in-out;
       display: block;
       padding: 14px 6px 14px 58px;
-      background-color:palette-color-level(grey, 40);
-      .sub-menu-header{
+      background-color: palette-color-level(grey, 40);
+
+      .sub-menu-header {
         overflow: hidden;
         white-space: nowrap;
-        font-size:  palette-font-size-level(4);
+        font-size: palette-font-size-level(4);
         font-weight: palette-font-weight-level(5);
       }
-      .sub-menu-list{
+
+      .sub-menu-list {
         display: flex;
         flex-direction: column;
       }
-      .sub-menu-item{
+
+      .sub-menu-item {
         color: palette-color-level(primary-light, 100);
-        font-size:  palette-font-size-level(3);
+        font-size: palette-font-size-level(3);
         padding: 5px 0;
         text-decoration: none;
       }
-      .sub-menu-divider{
+
+      .sub-menu-divider {
         opacity: palette-color-level(primary-dark-alt, 100);
         transition: inherit;
         border-width: thin 0 0 0;
@@ -217,11 +236,13 @@ aside{
         margin: 8px 0 8px 0;
 
       }
-      .sub-menu-item:hover{
+
+      .sub-menu-item:hover {
         color: palette-color-level(primary, 100);
       }
     }
-    .open-sub-menu{
+
+    .open-sub-menu {
       visibility: hidden;
       height: 0;
       padding: 0;
@@ -230,23 +251,23 @@ aside{
       pointer-events: none;
 
     }
-    .sub-menu-clicked{
+
+    .sub-menu-clicked {
       transition: all 0.21s cubic-bezier(0.5, 0, 0, 1.25);
       transform: rotate(180deg);
     }
   }
 
   @media (max-width: 768px) {
-     position: fixed;
-     z-index: 999;
+    position: fixed;
+    z-index: 999;
   }
-  button{
+
+  button {
     cursor: pointer;
     outline: none;
     appearance: none;
     border: none;
-    background:none;
+    background: none;
   }
-}
-
-</style>
+}</style>
