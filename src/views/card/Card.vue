@@ -3,7 +3,6 @@
     <h1 slot="header">Card Components</h1>
     <hr />
     <div>
-      /* sections="{"header":value, "visibility":true}" */
       <div class="flex">
         <div class="cards-input">
           <hw-card
