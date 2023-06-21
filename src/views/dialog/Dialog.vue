@@ -29,32 +29,20 @@
         </select>
 
         <div class="checkbox-wrapper">
-          <input
-            class="checkbox-input"
-            v-model="selectedBackdrop"
-            type="checkbox"
-            id="backdrop"
-            name="selectedBackdrop"
-            :value="selectedBackdrop"
-            />
+          <input class="checkbox-input" v-model="selectedBackdrop" type="checkbox" id="backdrop" name="selectedBackdrop"
+            :value="selectedBackdrop" />
           <label for="backdrop">Backdrop</label>
         </div>
 
         <div class="checkbox-wrapper">
-          <input
-            class="checkbox-input"
-            checked
-            v-model="selectedAnimation"
-            type="checkbox"
-            id="animation"
-            name="selectedAnimation"
-            :value="selectedAnimation"
-            />
+          <input class="checkbox-input" checked v-model="selectedAnimation" type="checkbox" id="animation"
+            name="selectedAnimation" :value="selectedAnimation" />
           <label for="animation">Animation</label>
         </div>
       </div>
 
-      <HwDialog :position="selectedPosition" :size="selectedSize" :animation="selectedAnimation" :backdrop="selectedBackdrop">
+      <HwDialog v-model:open="isOpen" :position="selectedPosition" :size="selectedSize" :animation="selectedAnimation"
+        :backdrop="selectedBackdrop">
         <template v-slot:header>Use Huawei's location service?</template>
         <template v-slot:content>Let Huawei help apps determine location. This means sending anonymous location data to
           Huawei, even when no apps are running. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quos
@@ -71,6 +59,8 @@
         <template v-slot:footer-cancel>Cancel</template>
 
       </HwDialog>
+
+      <button class="modal-button" @click="openModal()">Open Dialog</button>
     </div>
   </div>
 </template>
@@ -84,6 +74,7 @@ export default {
   name: "Dialog",
   data() {
     return {
+      isOpen: false,
       selectedPosition: "center",
       selectedSize: "md",
       selectedBackdrop: false,
@@ -91,10 +82,12 @@ export default {
     };
   },
   methods: {
+    openModal() {
+      this.isOpen = !this.isOpen
+    },
     setSelected(selectedValue) {
       this.selectedPosition = selectedValue
     },
-
     setSize(selectedSize) {
       this.selectedSize = selectedSize
     },
@@ -143,24 +136,39 @@ export default {
       justify-content: space-around;
 
       .select {
-      width: 20%;
-      padding: palette-space-level(5);
-      border-radius: palette-radius-level(2);
-    }
-     
-    .checkbox-wrapper {
-      display: flex;
-      align-items: center;
-
-      .checkbox-input {
-        margin-right: palette-space-level(5);
+        width: 20%;
+        padding: palette-space-level(5);
+        border-radius: palette-radius-level(2);
       }
+
+      .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+
+        .checkbox-input {
+          margin-right: palette-space-level(5);
+        }
+      }
+
     }
 
+    .modal-button {
+      width: palette-space(space-200);
+      height: palette-space(space-40);
+      border-radius: palette-radius-level(4);
+      border: none;
+      cursor: pointer;
+      margin: auto;
+
+      &:hover {
+        color: palette-color-level(primary, 100);
+        background-color: palette-color-level(grey, 70);
+      }
     }
   }
 
   &:last-child {
     margin-bottom: palette-space-level(400);
   }
-}</style>
+}
+</style>
