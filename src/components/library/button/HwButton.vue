@@ -1,9 +1,8 @@
 <template>
-    <div class="button-wrapper" :class="[state.size, state.btnStyle, state.shape, (!(disableElevation || disabled) && state.btnStyle === 'primary') ? 'elevation' : '', disabled ? `disabled disabled-${state.btnStyle}` : `${state.btnStyle}-${state.btnColor}-color`]" @click="handleClick" @mouseup="mouseUpHandler">
+    <div class="button-wrapper" :class="[state.size, state.btnStyle, state.shape, (!(disableElevation || disabled) && state.btnStyle === 'primary') ? 'elevation' : '', disabled ? `disabled disabled-${state.btnStyle}` : `${state.btnStyle}-${state.btnColor}-color`]" @click="handleClick" @mouseup="mouseUpHandler" ref="btnRef">
       <div ref="contentDiv" class="button">
         <slot></slot>
       </div>
-      <div class="click-animation-div" :class="[state.mouseDown ? 'click-animation' : '']"></div>
     </div>
 </template>
 
@@ -49,9 +48,9 @@ const state = reactive({
   shape: 'flat',
   btnColor: 'default',
   spacing: 10,
-  mouseDown: false,
 })
 const contentDiv = ref(null);
+const btnRef = ref(null);
 
 onBeforeMount(()=>{
   validateProps();
@@ -109,9 +108,42 @@ const handleClick = () => {
 }
 const mouseUpHandler = (e) => {
   if(props.disabled) return;
-  state.mouseDown = true;
+  const rippleDiv = document.createElement("div")
+  const clientRect = btnRef._value.getBoundingClientRect()
+  const dia = Math.max(clientRect.width, clientRect.height)
+  const rad = dia / 2
+  rippleDiv.style.width = rippleDiv.style.height = `${dia}px`
+  rippleDiv.style.top = `${Math.round(e.clientY - (clientRect.top + rad))}px`
+  rippleDiv.style.left = `${Math.round(e.clientX - (clientRect.left + rad))}px`
+  let animText = 'ripple-anim-sec-ter-'
+  if(state.btnStyle === 'primary') rippleDiv.style.animation = 'ripple-anim-pri .4s linear'
+  else {
+    switch (state.btnColor) {
+      case 'default':
+        animText = animText.concat('def')
+        break;
+      case 'optional':
+        animText = animText.concat('opt')
+        break;
+      case 'success':
+        animText = animText.concat('suc')
+        break;
+      case 'warning':
+        animText = animText.concat('war')
+        break;
+      case 'danger':
+        animText = animText.concat('dan')
+        break;
+    
+      default:
+        break;
+    }
+    rippleDiv.style.animation = animText.concat(' .4s linear')
+  }
+  rippleDiv.classList.add("ripple")
+  btnRef._value.appendChild(rippleDiv)
   setTimeout(() => {
-    state.mouseDown = false;
+    rippleDiv.remove()
   }, 400);
 }
 </script>
@@ -123,37 +155,18 @@ const mouseUpHandler = (e) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   margin: 10px;
   user-select: none;
   font-family: inherit;
-  transition: all 500ms;
-  .click-animation-div{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0px;
-    height: 0px;
-    background-color: transparent;
-    border-radius: 50%;
-    transition: all 250ms;
-  }
-  .click-animation{
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
+  transition: all 300ms;
 }
 .button{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.primary{
-  .click-animation{
-    background-color: rgba($color: #ffffff, $alpha: 0.3) !important;
-  }
-}
+// .primary{}
 .secondary{
   border: 1px solid;
 }
@@ -185,7 +198,6 @@ const mouseUpHandler = (e) => {
   }
 .xsmall{
   min-height: 24px;
-  width: fit-content;
   padding: 5px 10px;
   font-size: 1rem;
 }
@@ -197,7 +209,6 @@ const mouseUpHandler = (e) => {
 }
 .small{
   min-height: 30px;
-  width: fit-content;
   padding: 7px 14px;
   font-size: 1.1rem;
 }
@@ -209,7 +220,6 @@ const mouseUpHandler = (e) => {
 }
 .medium{
   min-height: 36px;
-  width: fit-content;
   padding: 9px 18px;
   font-size: 1.3rem;
 }
@@ -221,7 +231,6 @@ const mouseUpHandler = (e) => {
 }
 .large{
   min-height: 42px;
-  width: fit-content;
   padding: 11px 22px;
   font-size: 1.4rem;
 }
@@ -233,7 +242,6 @@ const mouseUpHandler = (e) => {
 }
 .xlarge{
   min-height: 48px;
-  width: fit-content;
   padding: 13px 26px;
   font-size: 1.5rem;
 }
@@ -245,21 +253,14 @@ const mouseUpHandler = (e) => {
 }
 .flat{
   border-radius: palette-radius-level(2);
-  .click-animation{
-    border-radius: palette-radius-level(2);
-  }
+  width: fit-content;
 }
 .round{
   border-radius: 50em;
-  .click-animation{
-    border-radius: 50em;
-  }
+  width: fit-content;
 }
 .circle{
-  border-radius: 50%;
-  .click-animation{
-    border-radius: 50%;
-  }
+  border-radius: palette-radius-level(0);
 }
 .primary-default-color{
   background-color: palette-color-level(primary, 100);
@@ -305,9 +306,6 @@ const mouseUpHandler = (e) => {
     background-color: #fff8ef;
     border-color: #b46b39;
   }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(primary, 100), $alpha: 0.3) !important;
-  }
 }
 .secondary-optional-color{
   background-color: transparent;
@@ -316,9 +314,6 @@ const mouseUpHandler = (e) => {
   &:hover{
     background-color: #f1f1ff;
     border-color: palette-color-level(blue, 50);
-  }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.3) !important;
   }
 }
 .secondary-success-color{
@@ -329,9 +324,6 @@ const mouseUpHandler = (e) => {
     background-color: #f1fff1;
     border-color: #329131;
   }
-  .click-animation{
-    background-color: rgba($color: #329131, $alpha: 0.3) !important;
-  }
 }
 .secondary-danger-color{
   background-color: transparent;
@@ -340,9 +332,6 @@ const mouseUpHandler = (e) => {
   &:hover{
     background-color: #fff1f1;
     border-color: #c53231;
-  }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.3) !important;
   }
 }
 .secondary-warning-color{
@@ -353,9 +342,6 @@ const mouseUpHandler = (e) => {
     background-color: #fffff1;
     border-color: #bea202;
   }
-  .click-animation{
-    background-color: rgba($color: #eed202, $alpha: 0.3) !important;
-  }
 }
 
 .tertiary-default-color{
@@ -364,18 +350,12 @@ const mouseUpHandler = (e) => {
   &:hover{
     background-color: #fff8ef;
   }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(primary, 100), $alpha: 0.3) !important;
-  }
 }
 .tertiary-optional-color{
   background-color: transparent;
   color: palette-color-level(blue, 40);
   &:hover{
     background-color: #f1f1ff;
-  }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.3) !important;
   }
 }
 .tertiary-success-color{
@@ -384,18 +364,12 @@ const mouseUpHandler = (e) => {
   &:hover{
     background-color: #f1fff1;
   }
-  .click-animation{
-    background-color: rgba($color: #329131, $alpha: 0.3) !important;
-  }
 }
 .tertiary-danger-color{
   background-color: transparent;
   color: palette-color-level(red, 30);
   &:hover{
     background-color: #fff1f1;
-  }
-  .click-animation{
-    background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.3) !important;
   }
 }
 .tertiary-warning-color{
@@ -404,8 +378,49 @@ const mouseUpHandler = (e) => {
   &:hover{
     background-color: #fffff1;
   }
-  .click-animation{
-    background-color: rgba($color: #eed202, $alpha: 0.3) !important;
-  }
 }
+</style>
+<style lang="scss">
+@keyframes ripple-anim-pri {
+    to {
+      background-color: rgba($color: #ffffff, $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+@keyframes ripple-anim-sec-ter-def {
+    to {
+      background-color: rgba($color: palette-color-level(primary, 100), $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+@keyframes ripple-anim-sec-ter-opt {
+    to {
+      background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+@keyframes ripple-anim-sec-ter-dan {
+    to {
+      background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+@keyframes ripple-anim-sec-ter-suc {
+    to {
+      background-color: rgba($color: #329131, $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+@keyframes ripple-anim-sec-ter-war {
+    to {
+      background-color: rgba($color: #eed202, $alpha: 0.3);
+      transform: scale(1.8);
+    }
+  }
+  .ripple{
+    position: absolute;
+    background-color: transparent;
+    border-radius: palette-radius-level(0);
+    transform: scale(0);
+  }
 </style>
