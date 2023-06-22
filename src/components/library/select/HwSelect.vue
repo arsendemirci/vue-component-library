@@ -236,8 +236,7 @@ watch(
   height: palette-space-level(42);
   line-height: 40px;
   outline: none;
-  padding-left: palette-space-level(15);
-  padding-right: palette-space-level(25);
+  padding: palette-padding-level(10,15);
   position: relative;
   text-align: left !important;
   transition: all 0.24s ease-in-out;

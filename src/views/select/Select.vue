@@ -9,11 +9,11 @@
         values as in the example below:
       </p>
       <hw-select
-          :options="languages"
-          read-text="text"
-          read-value="id"
-          placeholder="Select Language"
-          v-model="model1"
+        :options="languages"
+        read-text="text"
+        read-value="id"
+        placeholder="Select Language"
+        v-model="model1"
       ></hw-select>
       <div class="v-model">
         Model Value : <span class="value">{{ model1 }}</span>
@@ -26,11 +26,11 @@
         check this example:
       </p>
       <hw-select
-          :options="languages"
-          read-text="text"
-          read-value="id"
-          placeholder="Select Language"
-          v-model="model2"
+        :options="languages"
+        read-text="text"
+        read-value="id"
+        placeholder="Select Language"
+        v-model="model2"
       ></hw-select>
       <div class="v-model">
         Model Value : <span class="value">{{ model2 }}</span>
@@ -43,12 +43,12 @@
         <b>search</b> attribute, see example below:
       </p>
       <hw-select
-          :options="languages"
-          read-text="text"
-          read-value="id"
-          placeholder="Select Language"
-          search
-          v-model="model3"
+        :options="languages"
+        read-text="text"
+        read-value="id"
+        placeholder="Select Language"
+        search
+        v-model="model3"
       ></hw-select>
       <div class="v-model">
         Model Value : <span class="value">{{ model3 }}</span>
@@ -61,9 +61,9 @@
         objects, your model output will be primitive automatically.
       </p>
       <hw-select
-          :options="friends"
-          placeholder="Select Friend"
-          v-model="model4"
+        :options="friends"
+        placeholder="Select Friend"
+        v-model="model4"
       ></hw-select>
       <div class="v-model">
         Model Value : <span class="value">{{ model4 }}</span>
@@ -76,17 +76,17 @@
         own template, see the example:
       </p>
       <hw-select
-          :options="languages"
-          read-value="id"
-          read-text="text"
-          placeholder="Select Language"
-          v-model="model5"
-      ><template #option="{ value, text }">
-        <div class="option">
-          <div class="option-value">{{ value }}</div>
-          <div class="option-text">{{ text }}</div>
-        </div>
-      </template>
+        :options="languages"
+        read-value="id"
+        read-text="text"
+        placeholder="Select Language"
+        v-model="model5"
+        ><template #option="{ value, text }">
+          <div class="option">
+            <div class="option-value">{{ value }}</div>
+            <div class="option-text">{{ text }}</div>
+          </div>
+        </template>
       </hw-select>
       <div class="v-model">
         Model Value : <span class="value">{{ model5 }}</span>
@@ -131,7 +131,7 @@ export default {
   },
   components: {
     SelectDemo,
-    HwSelect
+    HwSelect,
   },
 };
 </script>
@@ -157,7 +157,7 @@ export default {
     }
   }
   > div {
-    padding:palette-space-level(15) palette-space-level(20);
+    padding: palette-space-level(15) palette-space-level(20);
     flex-direction: column;
     background: palette-color-level(white, 100);
     border-radius: palette-radius-level(5);
@@ -173,10 +173,8 @@ export default {
         font-size: large;
       }
     }
-
     .option {
       display: flex;
-
       &:hover {
         .option-value {
           border-color: palette-color-level(white, 100);

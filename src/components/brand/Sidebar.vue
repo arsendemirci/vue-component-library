@@ -30,6 +30,7 @@
        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
        <li class="sub-menu-header">NAVIGATION</li>
        <li class="sub-menu-list">
+         <router-link class="sub-menu-item" to="/cards">Cards</router-link>
          <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
          <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
          <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
