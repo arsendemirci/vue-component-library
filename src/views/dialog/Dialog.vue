@@ -41,8 +41,8 @@
         </div>
       </div>
 
-      <HwDialog v-model:open="isOpen" :position="selectedPosition" :size="selectedSize" :animation="selectedAnimation"
-        :backdrop="selectedBackdrop">
+      <HwDialog @open="openEvent" @close="closeEvent" v-model:open="isOpen" :position="selectedPosition"
+        :size="selectedSize" :animation="selectedAnimation" :backdrop="selectedBackdrop">
         <template v-slot:header>Use Huawei's location service?</template>
         <template v-slot:content>Let Huawei help apps determine location. This means sending anonymous location data to
           Huawei, even when no apps are running. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quos
@@ -60,7 +60,9 @@
 
       </HwDialog>
 
-      <button class="modal-button" @click="openModal()">Open Dialog</button>
+      <button class="modal-button" @click="openModal">
+        Open Dialog
+      </button>
     </div>
   </div>
 </template>
@@ -84,6 +86,12 @@ export default {
   methods: {
     openModal() {
       this.isOpen = !this.isOpen
+    },
+    openEvent() {
+      console.log('open event triggered!');
+    },
+    closeEvent() {
+      console.log('close event triggered!');
     },
     setSelected(selectedValue) {
       this.selectedPosition = selectedValue

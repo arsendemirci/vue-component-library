@@ -13,7 +13,7 @@
                     <button class="footer-btn">
                         <slot name="footer-agree"></slot>
                     </button>
-                    <button @click="closeModal" class="footer-btn">
+                    <button @click="closeModal()" class="footer-btn">
                         <slot name="footer-cancel"></slot>
                     </button>
                 </footer>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { watch } from 'vue'
+
 export default {
     el: "#modal",
     props: {
@@ -32,7 +34,7 @@ export default {
         animation: { type: Boolean, default() { return true } },
         open: { type: Boolean, default() { return false } },
     },
-    emits: ['update:open'],
+    emits: ['update:open', 'open', 'close'],
     data() {
         return {
             positionOptions: {
@@ -52,8 +54,8 @@ export default {
         }
     },
     mounted() {
-        var _self = this; 
-        var _emit = this.$emit; 
+        var _self = this;
+        var _emit = this.$emit;
 
         document.addEventListener('keydown', function (e) {
             if (e.keyCode == 27 && !_self.backdrop) {
@@ -62,7 +64,7 @@ export default {
         })
     },
     unmounted() {
-        document.removeEventListener('keydown', (e) => {console.log('event cleared', e.target.value);})
+        document.removeEventListener('keydown', (e) => { console.log('event cleared', e.target.value); })
     },
     methods: {
         closeModal() {
@@ -73,6 +75,20 @@ export default {
                 this.$emit('update:open', false)
             }
         },
+        deneme() {
+            console.log('event triggered!');
+        }
+    },
+    watch: {
+        open: {
+            handler(newValue, oldValue) {
+                if (newValue) {
+                    this.$emit('open')
+                } else {
+                    this.$emit('close')
+                }
+            }
+        }
     }
 }
 </script>
@@ -113,10 +129,18 @@ export default {
 
             &::-webkit-scrollbar-thumb {
                 visibility: hidden;
+
+                background: palette-color-level(primary, 100);
+                border-radius: palette-radius(radius-10);
+
+                &:hover {
+                    background: palette-color-level(red, 40);
+                }
             }
 
             &::-webkit-scrollbar {
                 visibility: hidden;
+                width: palette-space(space-5);
             }
 
             &:hover {
@@ -127,25 +151,10 @@ export default {
                 &::-webkit-scrollbar {
                     visibility: visible;
                 }
-            }
 
-            &::-webkit-scrollbar {
-                width: palette-space(space-5);
-            }
-
-            &:hover {
                 &::-webkit-scrollbar-track {
                     box-shadow: inset 0 0 5px grey;
                     border-radius: palette-radius(radius-10);
-                }
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: palette-color-level(primary, 100);
-                border-radius: palette-radius(radius-10);
-
-                &:hover {
-                    background: palette-color-level(red, 40);
                 }
             }
         }
