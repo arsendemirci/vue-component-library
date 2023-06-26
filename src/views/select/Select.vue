@@ -14,10 +14,10 @@
           read-value="id"
           placeholder="Select Language"
           v-model="model1"
-      ></hw-select>
-      <div class="v-model">
-        Model Value : <span class="value">{{ model1 }}</span>
-      </div>
+      ></hw-select><div class="v-model">
+      Model Value : <span class="value">{{ model1 }}</span>
+    </div>
+
     </div>
     <div>
       <h2>Object model example</h2>

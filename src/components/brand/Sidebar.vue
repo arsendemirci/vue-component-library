@@ -31,7 +31,7 @@
        <li class="sub-menu-header">NAVIGATION</li>
        <li class="sub-menu-list">
          <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
-         <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
+         <router-link class="sub-menu-item" to="/tabs">Tabs</router-link>
          <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
        </li>
      </ul>

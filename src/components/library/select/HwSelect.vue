@@ -263,7 +263,7 @@ watch(
       font-weight: palette-font-weight-level(5);
       transition: all 0.21s cubic-bezier(0.5, 0, 0, 1.25);
       &:hover {
-        color: palette-color-level(white, 100);;
+        color: palette-color-level(white, 100);
         background: palette-color-level(grey, 30);
       }
     }
