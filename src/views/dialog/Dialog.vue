@@ -8,7 +8,8 @@
       <h2>Default Dialog Component</h2>
       <p>
         Dialog components can provide some content and action input from user when needed. This is default dialog and
-        centered on the page whit animation.
+        centered on the page whit animation. Backdrop avaliable if needed. If you want to trigger open and close event,
+        select use select boxes.
       </p>
 
       <div class="select-wrapper">
@@ -29,39 +30,101 @@
         </select>
 
         <div class="checkbox-wrapper">
-          <input class="checkbox-input" v-model="selectedBackdrop" type="checkbox" id="backdrop" name="selectedBackdrop"
-            :value="selectedBackdrop" />
+          <input class="checkbox-input" v-model="selectedBackdrop" type="checkbox" id="backdrop"
+            name="selectedBackdrop" />
           <label for="backdrop">Backdrop</label>
         </div>
 
         <div class="checkbox-wrapper">
           <input class="checkbox-input" checked v-model="selectedAnimation" type="checkbox" id="animation"
-            name="selectedAnimation" :value="selectedAnimation" />
+            name="selectedAnimation" />
           <label for="animation">Animation</label>
         </div>
+
+        <div class="checkbox-wrapper">
+          <input class="checkbox-input" v-model="openEventFlag" type="checkbox" id="open" name="selectedOpenEvent" />
+          <label for="open">Open Event</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input class="checkbox-input" v-model="closeEventFlag" type="checkbox" id="close" name="selectedCloseEvent" />
+          <label for="close">Close Event</label>
+        </div>
+
+      </div>
+
+      <div class="showcase">
+        <b>Events : </b>
+        <p v-if="openEvent !== ''">{{ openEventData }}</p>
+        <p v-if="closeEvent !== ''">{{ closeEventData }}</p>
       </div>
 
       <HwDialog @open="openEvent" @close="closeEvent" v-model:open="isOpen" :position="selectedPosition"
         :size="selectedSize" :animation="selectedAnimation" :backdrop="selectedBackdrop">
-        <template v-slot:header>Use Huawei's location service?</template>
-        <template v-slot:content>Let Huawei help apps determine location. This means sending anonymous location data to
-          Huawei, even when no apps are running. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quos
-          et suscipit totam quis, provident delectus, eos laborum veniam accusantium corrupti animi doloremque sit quaerat
-          sapiente iusto facere, aperiam dolorum.
-          Atque, maxime deserunt error corporis, sequi fugiat dignissimos delectus, voluptatum deleniti aliquam
-          praesentium ullam. Voluptate rem, deserunt nobis voluptatem ad dignissimos aspernatur eaque delectus sed
-          eligendi, itaque voluptatibus doloremque neque!
-          Itaque odio autem odit magni illum? Ipsum sapiente, aliquam id voluptatibus cumque odit molestiae sit corrupti
-          quos, placeat quas tempore magni quibusdam quidem, dignissimos nulla ab asperiores illum reprehenderit minima.
-        </template>
 
-        <template v-slot:footer-agree>Agree</template>
-        <template v-slot:footer-cancel>Cancel</template>
+        <template v-slot:header></template>
+
+        <template v-slot:content></template>
+
+        <template v-slot:footer></template>
 
       </HwDialog>
 
       <button class="modal-button" @click="openModal">
         Open Dialog
+      </button>
+    </div>
+
+    <div>
+      <h2>Customize Dialog Component</h2>
+      <p>
+        Dialog components provided 3 sections. Header, content and footer sections supported with vue.js slots. You can
+        set your customized templates with classes to modal. Here is the sample:
+      </p>
+
+      <HwDialog @open="openEvent" @close="closeEvent" v-model:open="isCustomOpen" :position="selectedPosition"
+        :size="selectedSize" :animation="selectedAnimation" :backdrop="selectedBackdrop">
+
+        <template v-slot:header>
+          <h1 class="header-custom">Title Here!!</h1>
+        </template>
+
+        <template v-slot:content>
+          <p class="content-custom">Content Here!!</p>
+
+        </template>
+
+        <template v-slot:footer>
+          <a href="#" class="button-custom">Footer Here!!</a>
+        </template>
+
+
+      </HwDialog>
+
+      <div class="card-pre">
+        <pre>
+          <code class="language-html"> 
+            &lt;HwDialog @open="openEvent" @close="closeEvent" position="center" size="md" :backdrop="false" :animation="true"&gt; 
+
+            &lt;template v-slot:header&gt; 
+              &lt;h1 class="header-custom"&gt; Title Here!! &lt;/h1&gt; 
+            &lt;/template&gt; 
+
+            &lt;template v-slot:content&gt; 
+              &lt;p class="content-custom"&gt; Content Here!! &lt;/p&gt; 
+            &lt;/template&gt; 
+
+            &lt;template v-slot:footer&gt; 
+              &lt;a href="#" class="button-custom"&gt; Footer Here!! &lt;/a&gt; 
+            &lt;/template&gt; 
+
+            &lt;/HwDialog&gt; 
+          </code>
+        </pre>
+      </div>
+
+      <button class="modal-button" @click="openCustomModal">
+        Open Customize Dialog
       </button>
     </div>
   </div>
@@ -77,21 +140,36 @@ export default {
   data() {
     return {
       isOpen: false,
+      isCustomOpen: false,
       selectedPosition: "center",
       selectedSize: "md",
+      openEventData: "",
+      closeEventData: "",
       selectedBackdrop: false,
-      selectedAnimation: true
+      selectedAnimation: true,
+      openEventFlag: false,
+      closeEventFlag: false
     };
   },
+
   methods: {
     openModal() {
       this.isOpen = !this.isOpen
     },
+
+    openCustomModal() {
+      this.isCustomOpen = !this.isCustomOpen
+    },
+
     openEvent() {
-      console.log('open event triggered!');
+      if (this.openEventFlag) {
+        this.openEventData = 'Open event triggered!'
+      }
     },
     closeEvent() {
-      console.log('close event triggered!');
+      if (this.closeEventFlag) {
+        this.closeEventData = 'Close event triggered!'
+      }
     },
     setSelected(selectedValue) {
       this.selectedPosition = selectedValue
@@ -99,14 +177,6 @@ export default {
     setSize(selectedSize) {
       this.selectedSize = selectedSize
     },
-
-    setBackdrop(event) {
-      this.selectedBackdrop = event.target.value
-    },
-
-    setAnimation(selectedAnimation) {
-      this.selectedAnimation = selectedAnimation
-    }
   },
   components: { HwDialog, DialogDemo }
 }
@@ -114,6 +184,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-custom {
+  color: blue;
+  font-size: 36px;
+}
+
+.content {
+  color: green;
+}
+
+.content-custom {
+  color: red;
+}
+
+.button-custom {
+  color: blue;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -160,6 +247,11 @@ export default {
 
     }
 
+    .showcase {
+      margin-top: palette-space-level(30);
+      margin-bottom: palette-space-level(30);
+    }
+
     .modal-button {
       width: palette-space(space-200);
       height: palette-space(space-40);
@@ -171,6 +263,29 @@ export default {
       &:hover {
         color: palette-color-level(primary, 100);
         background-color: palette-color-level(grey, 70);
+      }
+    }
+
+    .card-pre {
+      margin-bottom: 20px;
+
+      pre {
+        line-height: 1.2;
+        background-color: palette-color-level(primary-dark, 100);
+        border-radius: palette-radius-level(3);
+        white-space: pre-wrap;
+        overflow: auto;
+        color: palette-color-level(primary-light, 100);
+      }
+
+      code {
+        display: inline;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
+        word-wrap: normal;
+        background-color: transparent;
+        border: 0;
       }
     }
   }

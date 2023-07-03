@@ -1,24 +1,41 @@
 <template>
     <Teleport to="body">
-        <div @keydown.esc="this.isOpen = false" @click="handleBackdropClick" v-if="open" class="modal-mask">
-            <div @click.stop class="modal-container"
-                :class="[positionOptions[position], sizeOptions[size]], (animation) ? positionOptions[position] + '-animation' : ''">
-                <p class="header">
-                    <slot name="header">Header</slot>
-                </p>
-                <section class="content">
-                    <slot name="content">Content</slot>
-                </section>
-                <footer class="footer">
-                    <button class="footer-btn">
-                        <slot name="footer-agree"></slot>
-                    </button>
-                    <button @click="closeModal()" class="footer-btn">
-                        <slot name="footer-cancel"></slot>
-                    </button>
-                </footer>
+        <Transition name="modal">
+            <div @keydown.esc="this.isOpen = false" @click="handleBackdropClick" v-if="open" class="modal-mask">
+                <div @click.stop class="modal-container"
+                    :class="[positionOptions[position], sizeOptions[size]], (animation) ? positionOptions[position] + '-animation' : ''">
+                    <slot>
+                        <section class="header">
+                            <slot name="header"> Default title</slot>
+                        </section>
+
+
+                        <section class="content">
+                            <slot name="content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                                perspiciatis eum iure alias ducimus itaque libero aperiam nisi ab odio nemo repellat autem
+                                eligendi non inventore incidunt officiis corporis, praesentium animi culpa doloribus,
+                                quisquam id tempora. Dolor odit, sed reprehenderit maiores fugiat excepturi voluptatibus,
+                                unde explicabo asperiores non quibusdam eligendi? Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Error minima accusamus sed eum tempore modi laudantium, ut consequatur
+                                necessitatibus voluptatem. 
+                            </slot>
+                        </section>
+
+                        <footer class="footer">
+                            <slot name="footer">
+                                <button class="footer-btn">
+                                    Ok
+                                </button>
+
+                                <button @click="closeModal()" class="footer-btn">
+                                    Cancel
+                                </button>
+                            </slot>
+                        </footer>
+                    </slot>
+                </div>
             </div>
-        </div>
+        </Transition>
     </Teleport>
 </template>
 
@@ -64,7 +81,7 @@ export default {
         })
     },
     unmounted() {
-        document.removeEventListener('keydown', (e) => { console.log('event cleared', e.target.value); })
+        document.removeEventListener('keydown', () => { })
     },
     methods: {
         closeModal() {
@@ -75,9 +92,6 @@ export default {
                 this.$emit('update:open', false)
             }
         },
-        deneme() {
-            console.log('event triggered!');
-        }
     },
     watch: {
         open: {
@@ -94,6 +108,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.modal-enter-from {
+    opacity: 0;
+}
+
+.modal-leave-to {
+    opacity: 0;
+}
+
 .modal-mask {
     display: flex;
     width: 100%;
@@ -119,7 +141,10 @@ export default {
         .header {
             padding: palette-space(space-5);
             font-weight: $font-weight-bold;
+            font-size: palette-font-size-level(11);
         }
+
+
 
         .content {
             padding: palette-space(space-5);
