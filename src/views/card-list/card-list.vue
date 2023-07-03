@@ -5,7 +5,7 @@
             <div class="toolbar">
                 <div class="search">
                     <input type="text" v-model="query" />
-                    <button type="button" class="button ripple">
+                    <button type="button" class="button ripple" @click="searchList">
                         <fa icon="fa-solid fa-magnifying-glass" />
                     </button>
                 </div>
@@ -22,14 +22,21 @@
                         <fa icon="fa-solid fa-plus" />
                     </button>
                 </div>
+                <div class="delete">
+                    <button type="button" class="button ripple" @click="deleteCard">
+                        <label>Delete Card</label>
+                        <fa icon="fa-solid fa-times" />
+                    </button>
+                </div>
             </div>
 
-            <TransitionGroup class="card-list" tag="ol" name="slide-in" :style="{ '--total': list.length }">
-
-                <li v-for="(c, index) in list" :style="{ 'z-index': list.length - index, '--i': index }" :key="index + '_i'"
-                    :data-index="index">
-                    <div class="card-container" @mouseenter="fnAnim($event, true)" @mouseleave="fnAnim($event, false)">
-                        <!-- <div class="card-wrap card-alt">
+            <TransitionGroup appear tag="ol" ref="listo" :class="{ 'no-delay': deleting }" class="card-list" name="slide-in"
+                :style="{ '--total': listOnAir.length }">
+                <Transition appear v-for="(c, index) in listOnAir" name="slide-in" :key="c.id">
+                    <li :key="c.id" :style="{ 'z-index': listOnAir.length - index, '--i': adding ? 0 : index }"
+                        ref="itemRefs">
+                        <div class="card-container">
+                            <!-- <div class="card-wrap card-alt">
                 <div class="card card-alt">
                     <h2>Alternative Card</h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi repellat quo tenetur fuga
@@ -40,69 +47,113 @@
             </div> -->
 
 
-                        <div class="card-wrap">
-                            <div class="card card-main">
-                                <h2>{{ c.title }}</h2>
-                                <p>{{ c.text }}</p>
-                            </div>
+                            <div class="card-wrap">
+                                <div class="card card-main">
+                                    <h2>{{ c.title }}</h2>
+                                    <p>{{ c.text }}</p>
+                                    <button type="button" class="button ripple" @click="deleteCard(index, c.id)">
+                                        <fa icon="fa-solid fa-times" />
+                                    </button>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
-                </li>
+
+                    </li>
+                </Transition>
             </TransitionGroup>
         </div>
     </div>
 </template>
  
-<script>
-import { ref, computed } from 'vue'
-export default {
-    setup() {
-        const titles = ['Carbon', 'Darwin', 'Curl', 'Epigram', 'JAVA', 'Kotlin', 'BASIC', 'Erlang', 'Delphi', 'Ruby', 'Pascal', 'Python', 'MATLAB', 'COBOL', 'JADE', 'UNITY', 'RAPID', 'PEARL', 'Fortran', 'TypeScript']
-        const list = ref([{ title: "CSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "JavaScript", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "VueJS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "HTML", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "SCSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "React", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
-        { title: "Angular", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." }
-        ]);
-        const query = ref('')
-        const sort = ref(false)
+<script setup>
+import { ref, onBeforeUpdate } from 'vue'
 
-        // const computedList = computed(() => {
-        //     console.log('computed triggered');
-        //     return list.value.filter((item) => item.title.toLowerCase().includes(query.value)).sort((a, b) => {
-        //         if (a.title > b.title)
-        //             return sort.value ? -1 : 1
-        //         else if (a.title < b.title) {
-        //             return sort.value ? 1 : -1
-        //         }
-        //     })
-        // })
+const listo = ref([]);
+let deleting = ref(false);
+const itemRefs = ref([]);
+const titles = ['Carbon', 'Darwin', 'Curl', 'Epigram', 'JAVA', 'Kotlin', 'BASIC', 'Erlang', 'Delphi', 'Ruby', 'Pascal', 'Python', 'MATLAB', 'COBOL', 'JADE', 'UNITY', 'RAPID', 'PEARL', 'Fortran', 'TypeScript']
+const list = ref([{ id: 1, title: "CSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 2, title: "JavaScript", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 3, title: "VueJS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 4, title: "HTML", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 5, title: "SCSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 6, title: "React", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
+{ id: 7, title: "Angular", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." }
+]);
+let listOnAir = ref([...list.value]);
+const query = ref('');
+let sort = ref(false);
+const adding = ref(false);
 
-        function fnAnim(el, isEnter) {
-            console.log(el.target, isEnter);
-            if (isEnter) {
-                el.target.classList.add("in");
-            } else {
-                el.target.classList.add("out");
-            }
+// const computedList = computed(() => {
+//     console.log('computed triggered');
+//     return list.value.filter((item) => item.title.toLowerCase().includes(query.value)).sort((a, b) => {
+//         if (a.title > b.title)
+//             return sort.value ? -1 : 1
+//         else if (a.title < b.title) {
+//             return sort.value ? 1 : -1
+//         }
+//     })
+// })
 
-            requestAnimationFrame((frStart) => {
-                console.log(frStart);
-            });
+function fnAnim(el, isEnter) {
+    // console.log(el.target, isEnter);
+    // if (isEnter) {
+    //     el.target.classList.add("in");
+    // } else {
+    //     el.target.classList.add("out");
+    // }
+
+    // requestAnimationFrame((frStart) => {
+    //     console.log(frStart);
+    // });
+}
+function sortList() {
+    console.log('sort list');
+    sort = !sort;
+    listOnAir.value = listOnAir.value.filter((item) => item.title.toLowerCase().includes(query.value)).sort((a, b) => {
+        if (a.title > b.title)
+            return sort ? -1 : 1
+        else if (a.title < b.title) {
+            return sort ? 1 : -1
         }
-        function sortList() {
-            console.log('sort list')
-            this.sort = !this.sort;
-        }
-        function createCard() {
-            this.list.push({ title: titles[Math.floor(Math.random() * titles.length)], text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
-        }
-        // function onBeforeEnter(el) {
-        //     el.style.opacity = 0;
-        //     el.style.transform = scale(0.5, 0.5);
+    })
+
+}
+onBeforeUpdate(() => {
+    // console.log(itemRefs.value[itemRefs.value.length - 1].style);
+})
+function searchList() {
+    console.log(list.value)
+    listOnAir.value = list.value.filter((item) => item.title.toLowerCase().includes(query.value))
+}
+function createCard() {
+    adding.value = true;
+    setTimeout(() => { adding.value = false }, 300);
+    let title = titles[Math.floor(Math.random() * titles.length)];
+    list.value.push({ title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
+    listOnAir.value.push({ title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
+}
+function deleteCard(index, id) {
+    deleting.value = true;
+    setTimeout(() => { deleting.value = false }, 300);
+    // list.value.splice(randomIndex, 1);
+    let listIndex = list.value.findIndex((item) => item.id === id);
+    if (listIndex) {
+        list.value.splice(listIndex, 1);
+    }
+
+    listOnAir.value.splice(index, 1);
+
+}
+        // function beforeEnter(el) {
+        //     // console.log('transisted element');
+        //     // console.log(el);
+        //     el.style['--i'] = 0;
+
+        //     // el.style['--i'] = 0;
+        //     // el.style.transitionDelay = 3;
         // }
 
         // function onEnter(el, done) {
@@ -122,9 +173,7 @@ export default {
         //         onComplete: done
         //     })
         // }
-        return { list, fnAnim, query, sort, sortList, createCard }
-    }
-}
+
 </script>
  
 <style lang="scss" scoped>
@@ -136,13 +185,16 @@ button {
 }
 
 .button {
+    * {
+        cursor: pointer;
+    }
 
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-
+    border-radius: 6px;
+    gap: 15px;
     cursor: pointer;
     color: white;
     background-color: #f69c3b;
@@ -175,8 +227,8 @@ button {
         align-items: center;
 
         button {
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
         input {
@@ -210,19 +262,15 @@ button {
 
     }
 
-    .sort {
-        button {
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-    }
-
     .card-list {
         position: relative;
         list-style-type: none;
+
+        &.no-delay {
+            li {
+                --i: 0 important;
+            }
+        }
 
         li {
             position: relative;
@@ -230,6 +278,15 @@ button {
             float: left;
             width: 310px;
             margin-right: 15px;
+
+            button {
+                border-radius: 50%;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+            }
 
             .card-container {
                 cursor: pointer;
@@ -250,7 +307,7 @@ button {
 
                 &:hover {
                     .card-main {
-                        animation: cardHover .4s ease-in-out forwards;
+                        //animation: cardHover .4s ease-in-out forwards;
                         // transform: rotateX(10deg) rotateY(20deg) rotateZ(-5deg) translateZ(0px) translateX(-10px);
                         // box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
                     }
@@ -289,7 +346,7 @@ button {
                         padding: 16px;
                         border-radius: 8px;
                         border: solid 1px gray;
-                        transition:all .2s ease-in;
+                        // transition:all .2s ease-in;
 
                         &.card-alt {
                             opacity: 0;
@@ -307,17 +364,25 @@ button {
 .slide-in {
 
     &-move {
-        transition: opacity .4s linear, transform .4s cubic-bezier(.5, 0, .7, .4);
+        transition: transform .4s cubic-bezier(.5, 0, .7, .4);
+    }
+
+    &-enter-active {
+        transition: opacity .4s linear, transform .4s cubic-bezier(.2, .5, .1, 1);
+        transition-delay: calc(0.12s * var(--i));
     }
 
     &-leave-active {
         transition: opacity .4s linear, transform .4s cubic-bezier(.5, 0, .7, .4); //cubic-bezier(.7,0,.7,1); 
-        transition-delay: calc(0.15s * (var(--total) - var(--i)));
+        transition-delay: calc(0.12s * (var(--total) - var(--i)));
     }
 
-    &-enter-active {
-        transition: opacity .5s linear, transform .5s cubic-bezier(.2, .5, .1, 1);
-        transition-delay: calc(0.15s * var(--i));
+
+
+    &-enter-to,
+    &-leave {
+        transform: translateX(0);
+        opacity: 1;
     }
 
     &-enter-from,
