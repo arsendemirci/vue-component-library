@@ -138,13 +138,13 @@ const mouseUpHandler = (e) => {
       default:
         break;
     }
-    rippleDiv.style.animation = animText.concat(' .4s linear')
+    rippleDiv.style.animation = animText.concat(' .6s linear')
   }
   rippleDiv.classList.add("ripple")
   btnRef._value.appendChild(rippleDiv)
   setTimeout(() => {
     rippleDiv.remove()
-  }, 400);
+  }, 600);
 }
 </script>
 
@@ -382,39 +382,81 @@ const mouseUpHandler = (e) => {
 </style>
 <style lang="scss">
 @keyframes ripple-anim-pri {
-    to {
+    20%{
       background-color: rgba($color: #ffffff, $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    60%{
+      background-color: rgba($color: #ffffff, $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
 @keyframes ripple-anim-sec-ter-def {
-    to {
+    20%{
       background-color: rgba($color: palette-color-level(primary, 100), $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    60%{
+      background-color: rgba($color: palette-color-level(primary, 100), $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
 @keyframes ripple-anim-sec-ter-opt {
-    to {
+    20%{
       background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    50%{
+      background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
 @keyframes ripple-anim-sec-ter-dan {
-    to {
+    20%{
       background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    50%{
+      background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
 @keyframes ripple-anim-sec-ter-suc {
-    to {
+    20%{
       background-color: rgba($color: #329131, $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    50%{
+      background-color: rgba($color: #329131, $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
 @keyframes ripple-anim-sec-ter-war {
-    to {
+    20%{
       background-color: rgba($color: #eed202, $alpha: 0.3);
-      transform: scale(1.8);
+    }
+    50%{
+      background-color: rgba($color: #eed202, $alpha: 0.15);
+      transform: scale(1.1);
+    }
+    100%{
+      background-color: transparent;
+      transform: scale(1.2);
     }
   }
   .ripple{
