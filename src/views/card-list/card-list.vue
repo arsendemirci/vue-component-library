@@ -30,13 +30,13 @@
                 </div>
             </div>
 
-            <TransitionGroup appear tag="ol" ref="listo" :class="{ 'no-delay': deleting }" class="card-list" name="slide-in"
+            <TransitionGroup appear tag="ul" :class="{ 'no-delay': deleting }" class="card-list" name="slide-in"
                 :style="{ '--total': listOnAir.length }">
-                <Transition appear v-for="(c, index) in listOnAir" name="slide-in" :key="c.id">
-                    <li :key="c.id" :style="{ 'z-index': listOnAir.length - index, '--i': adding ? 0 : index }"
-                        ref="itemRefs">
-                        <div class="card-container">
-                            <!-- <div class="card-wrap card-alt">
+
+                <div v-for="(c, index) in listOnAir" :key="c" class="item"
+                    :style="{ 'z-index': listOnAir.length - index, '--i': adding ? 0 : index }">
+                    <div class="card-container">
+                        <!-- <div class="card-wrap card-alt">
                 <div class="card card-alt">
                     <h2>Alternative Card</h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi repellat quo tenetur fuga
@@ -47,20 +47,19 @@
             </div> -->
 
 
-                            <div class="card-wrap">
-                                <div class="card card-main">
-                                    <h2>{{ c.title }}</h2>
-                                    <p>{{ c.text }}</p>
-                                    <button type="button" class="button ripple" @click="deleteCard(index, c.id)">
-                                        <fa icon="fa-solid fa-times" />
-                                    </button>
-                                </div>
-
+                        <div class="card-wrap">
+                            <div class="card card-main">
+                                <h2>{{ c.title }}</h2>
+                                <p>{{ c.text }}</p>
+                                <button type="button" class="button ripple" @click="deleteCard(index, c.id)">
+                                    <fa icon="fa-solid fa-trash" />
+                                </button>
                             </div>
-                        </div>
 
-                    </li>
-                </Transition>
+                        </div>
+                    </div>
+                </div>
+
             </TransitionGroup>
         </div>
     </div>
@@ -68,10 +67,8 @@
  
 <script setup>
 import { ref, onBeforeUpdate } from 'vue'
-
-const listo = ref([]);
+let autoID = ref(7);
 let deleting = ref(false);
-const itemRefs = ref([]);
 const titles = ['Carbon', 'Darwin', 'Curl', 'Epigram', 'JAVA', 'Kotlin', 'BASIC', 'Erlang', 'Delphi', 'Ruby', 'Pascal', 'Python', 'MATLAB', 'COBOL', 'JADE', 'UNITY', 'RAPID', 'PEARL', 'Fortran', 'TypeScript']
 const list = ref([{ id: 1, title: "CSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
 { id: 2, title: "JavaScript", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
@@ -86,29 +83,6 @@ const query = ref('');
 let sort = ref(false);
 const adding = ref(false);
 
-// const computedList = computed(() => {
-//     console.log('computed triggered');
-//     return list.value.filter((item) => item.title.toLowerCase().includes(query.value)).sort((a, b) => {
-//         if (a.title > b.title)
-//             return sort.value ? -1 : 1
-//         else if (a.title < b.title) {
-//             return sort.value ? 1 : -1
-//         }
-//     })
-// })
-
-function fnAnim(el, isEnter) {
-    // console.log(el.target, isEnter);
-    // if (isEnter) {
-    //     el.target.classList.add("in");
-    // } else {
-    //     el.target.classList.add("out");
-    // }
-
-    // requestAnimationFrame((frStart) => {
-    //     console.log(frStart);
-    // });
-}
 function sortList() {
     console.log('sort list');
     sort = !sort;
@@ -121,24 +95,24 @@ function sortList() {
     })
 
 }
-onBeforeUpdate(() => {
-    // console.log(itemRefs.value[itemRefs.value.length - 1].style);
-})
+
 function searchList() {
     console.log(list.value)
     listOnAir.value = list.value.filter((item) => item.title.toLowerCase().includes(query.value))
 }
 function createCard() {
     adding.value = true;
+    autoID.value = autoID.value + 1;
     setTimeout(() => { adding.value = false }, 300);
     let title = titles[Math.floor(Math.random() * titles.length)];
-    list.value.push({ title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
-    listOnAir.value.push({ title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
+
+    listOnAir.value.splice(0, 0, { id: autoID.value, title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
+    list.value.splice(0, 0, { id: autoID.value, title, text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." })
+    console.log("lengths list, listOnAir", list.value.length, listOnAir.value.length)
 }
 function deleteCard(index, id) {
     deleting.value = true;
     setTimeout(() => { deleting.value = false }, 300);
-    // list.value.splice(randomIndex, 1);
     let listIndex = list.value.findIndex((item) => item.id === id);
     if (listIndex) {
         list.value.splice(listIndex, 1);
@@ -147,32 +121,7 @@ function deleteCard(index, id) {
     listOnAir.value.splice(index, 1);
 
 }
-        // function beforeEnter(el) {
-        //     // console.log('transisted element');
-        //     // console.log(el);
-        //     el.style['--i'] = 0;
 
-        //     // el.style['--i'] = 0;
-        //     // el.style.transitionDelay = 3;
-        // }
-
-        // function onEnter(el, done) {
-        //     gsap.to(el, {
-        //         opacity: 1,
-        //         transform: scale(1, 1),
-        //         delay: el.dataset.index * 0.15,
-        //         onComplete: done
-        //     })
-        // }
-
-        // function onLeave(el, done) {
-        //     gsap.to(el, {
-        //         opacity: 0,
-        //         delay: el.dataset.index * 0.15,
-        //         transform: scale(0.5, 0.5),
-        //         onComplete: done
-        //     })
-        // }
 
 </script>
  
@@ -264,28 +213,32 @@ button {
 
     .card-list {
         position: relative;
-        list-style-type: none;
+        padding: 0;
 
         &.no-delay {
-            li {
-                --i: 0 important;
+            .item.slide-in-leave-active {
+                transition-delay: 0s !important;
             }
         }
 
-        li {
+        .item {
             position: relative;
             margin-bottom: 15px;
             float: left;
             width: 310px;
             margin-right: 15px;
+            // transition-delay: 0 !important;
 
             button {
                 border-radius: 50%;
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                width: 30px;
-                height: 30px;
+                width: 32px;
+                height: 32px;
+                transition: all 0.3s ease-out;
+                opacity: 0;
+                padding: 16px;
             }
 
             .card-container {
@@ -306,8 +259,14 @@ button {
                 // }
 
                 &:hover {
+                    button {
+                        opacity: 1;
+                        transform: translateX(30px) scaleX(1.4) scaleY(1.3) rotateZ(3deg) skewX(-4deg) rotateY(35deg);
+
+                    }
+
                     .card-main {
-                        //animation: cardHover .4s ease-in-out forwards;
+                        animation: cardHover .4s ease-in-out forwards;
                         // transform: rotateX(10deg) rotateY(20deg) rotateZ(-5deg) translateZ(0px) translateX(-10px);
                         // box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
                     }
@@ -364,39 +323,48 @@ button {
 .slide-in {
 
     &-move {
-        transition: transform .4s cubic-bezier(.5, 0, .7, .4);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
     &-enter-active {
-        transition: opacity .4s linear, transform .4s cubic-bezier(.2, .5, .1, 1);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         transition-delay: calc(0.12s * var(--i));
+        z-index: 0 !important;
     }
 
     &-leave-active {
-        transition: opacity .4s linear, transform .4s cubic-bezier(.5, 0, .7, .4); //cubic-bezier(.7,0,.7,1); 
-        transition-delay: calc(0.12s * (var(--total) - var(--i)));
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        // transition-delay: calc(0.12s * (var(--total) - var(--i)));
+        // position: absolute !important;
     }
 
 
 
-    &-enter-to,
-    &-leave {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    // &-enter-to,
+    // &-leave {
+    //     transform: translateX(0);
+    //     opacity: 1;
+    // }
 
     &-enter-from,
     &-leave-to {
         opacity: 0;
+        transform: scaleY(0.01) translate(30px, 0);
     }
 
-    &-enter-from {
-        transform: translateX(-1em);
+    &-leave-active {
+        position: absolute !important;
+        // transform: translateX(50px);
+        z-index: 0 !important; // to make leaving item go behind other moving items
     }
 
-    &-leave-to {
-        transform: translateX(1em);
-    }
+    // &-enter-from {
+    //     transform: translateX(-1em);
+    // }
+
+    // &-leave-to {
+    //     transform: translateX(-1em);
+    // }
 
 }
 
