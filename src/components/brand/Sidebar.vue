@@ -26,6 +26,7 @@
          <router-link class="sub-menu-item" to="/buttons">File inputs</router-link>
          <router-link class="sub-menu-item" to="/forms">Forms</router-link>
          <router-link class="sub-menu-item" to="/selects">Selects</router-link>
+         <router-link class="sub-menu-item" to="/buttons">Buttons</router-link>
        </li>
        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />
        <li class="sub-menu-header">NAVIGATION</li>
