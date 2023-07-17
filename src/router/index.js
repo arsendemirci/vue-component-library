@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: '/dialog',
       name: 'dialog',
-      component: () => import('../views/dialog/Dialog.vue')
+      component: () => import('../views/dialog/DialogDemo.vue')
     }
   ]
 })
