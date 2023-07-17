@@ -30,6 +30,7 @@ const router = createRouter({
       name: 'button',
       component: () => import('../views/button/ButtonDemo.vue')
     },
+    {
       path: '/dialog',
       name: 'dialog',
       component: () => import('../views/dialog/DialogDemo.vue')
