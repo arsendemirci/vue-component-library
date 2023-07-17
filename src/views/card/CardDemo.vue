@@ -19,7 +19,7 @@
         <div class="card-body">
           <h2 class="card-title"><span>🔫</span>Getting Started</h2>
           <p class="card-text">
-            For use ag-card you need basicly nothing. Just select fields what
+            For use hw-card you need basicly nothing. Just select fields what
             you desire and start to use the feature.
           </p>
         </div>
@@ -117,45 +117,63 @@
     <hr />
 
     <hw-card
-      title="Title"
-      header="Header"
-      subtitle="Subtitle"
-      image-path="../../../assets/300x300.png"
-      image-alt="1000 x 300 cool image"
-      style=""
+      :title="cardModel.title"
+      :header="cardModel.header"
+      :subtitle="cardModel.subtitle"
+      :image-path="cardModel.imagePath"
+      :image-alt="cardModel.imageAlt"
+      :style="cardModel.style"
     >
       <div class="card-dynamic-content">
-        <hw-card-text>
-          ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quasi qui
-          numquam exercitationem dolore nostrum libero doloremque fugiat nisi,
-          officia praesentium fuga quisquam culpa et recusandae inventore
-          accusamus non ab sapiente aliquid eius laboriosam. Quod voluptas
-          adipisci ab ducimus at incidunt aspernatur magni alias architecto
-          eligendi. Atque veniam esse iste.
-        </hw-card-text>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab iusto
+          commodi necessitatibus dolore? Fugiat, reiciendis! Sed odio nobis
+          aliquid sequi vitae ratione? Doloremque, facilis. Vel dignissimos
+          cumque rem tenetur incidunt.
+        </p>
 
-        <hw-button> Save </hw-button>
+        <div class="card-buttons card-content">
+          <button class="hw-button orange">Save</button>
+        </div>
       </div>
     </hw-card>
-    
   </div>
 </template>
 <script>
 import HwCard from "@lib/card/HwCard.vue";
-import HwCardText from "../../components/library/card/HwCardText.vue";
-import HwButton from "../../components/library/card/HwButton.vue";
-export default (await import("vue")).defineComponent({
- 
+export default {
   components: {
     HwCard,
-    HwCardText,
-    HwButton,
   },
-  methods: {},
-});
+  data() {
+    return {
+      cardModel: {
+        title: "Title",
+        header: "Header",
+        subtitle: "Subtitle",
+        imagePath: "../../../assets/300x300.png",
+        imageAlt: "1000 x 300 cool image",
+        style: "",
+      },
+    };
+  },
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  .hw-button {
+    margin-top: palette-space-level(10);
+
+    color: palette-color-level(white, 100);
+    border: none;
+    border-radius: palette-radius-level(5);
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+  }
+  .hw-button.orange {
+    background-color: palette-color-level(orange, 10);
+  }
 .container {
   margin: palette-space-level(10) auto;
   max-width: 960px;
@@ -332,4 +350,3 @@ table {
   }
 }
 </style>
-

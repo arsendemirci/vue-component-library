@@ -2,14 +2,14 @@
   <div class="card-wrapper">
     <div class="card-container">
       <div class="card-advanced">
-        <h1 class="header card-content">
+        <h1 v-if="header" class="header card-content">
           {{ header }}
         </h1>
-        <h1 class="title card-content">
+        <h1 v-if="title" class="title card-content">
           {{ title }}
         </h1>
 
-        <h1 class="subtitle card-content">
+        <h1 v-if="subtitle" class="subtitle card-content">
           {{ subtitle }}
         </h1>
 
@@ -24,9 +24,7 @@
 
 <script setup>
 const getImageUrl = (path) => {
-  if (path) {
-    return new URL(path, import.meta.url).href;
-  } else return "";
+  return path ? new URL(path, import.meta.url).href : "";
 };
 const getImageAlt = () => {
   return props.imageAlt;
@@ -48,10 +46,6 @@ const props = defineProps({
     type: String,
     required: false,
   },
-  imagePath: {
-    type: String,
-    required: false,
-  },
   imageAlt: {
     type: String,
     required: false,
@@ -60,6 +54,14 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.hw-card-text {
+  margin-bottom: palette-space-level(20);
+  font-weight: palette-font-weight-level(500);
+}
+.hw-card-text {
+  margin-bottom: palette-space-level(20);
+  font-weight: palette-font-weight-level(500);
+}
 .card-content {
   margin-bottom: palette-space-level(10);
 }
@@ -114,13 +116,8 @@ const props = defineProps({
     }
   }
 
-  .hw-button.gray {
-    background-color: palette-color-level(grey, 20);
-  }
-
   .card-footer {
     padding: palette-space-level(5) 0;
   }
 }
 </style>
-
