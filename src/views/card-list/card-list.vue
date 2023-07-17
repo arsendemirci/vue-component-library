@@ -4,7 +4,7 @@
         <div class="main-container">
             <div class="toolbar">
                 <div class="search">
-                    <input type="text" v-model="query" />
+                    <input type="text" v-model="query" @input="searchList" />
                     <button type="button" class="button ripple" @click="searchList">
                         <fa icon="fa-solid fa-magnifying-glass" />
                     </button>
@@ -36,39 +36,31 @@
                 <div v-for="(c, index) in listOnAir" :key="c" class="item"
                     :style="{ 'z-index': listOnAir.length - index, '--i': adding ? 0 : index }">
                     <div class="card-container">
-                        <!-- <div class="card-wrap card-alt">
-                <div class="card card-alt">
-                    <h2>Alternative Card</h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi repellat quo tenetur fuga
-                        necessitatibus
-                        eius
-                        ut explicabo consectetur dolores sit.</p>
-                </div>
-            </div> -->
-
-
                         <div class="card-wrap">
                             <div class="card card-main">
                                 <h2>{{ c.title }}</h2>
                                 <p>{{ c.text }}</p>
-                                <button type="button" class="button ripple" @click="deleteCard(index, c.id)">
-                                    <fa icon="fa-solid fa-trash" />
-                                </button>
-                            </div>
 
+                            </div>
+                            <button type="button" class="button ripple" @click="deleteCard(index, c.id)">
+                                <fa icon="fa-solid fa-trash-can" />
+                            </button>
                         </div>
                     </div>
                 </div>
-
             </TransitionGroup>
         </div>
     </div>
 </template>
  
 <script setup>
-import { ref, onBeforeUpdate } from 'vue'
+import { ref } from 'vue'
 let autoID = ref(7);
 let deleting = ref(false);
+const adding = ref(false);
+let sort = ref(false);
+const query = ref('');
+
 const titles = ['Carbon', 'Darwin', 'Curl', 'Epigram', 'JAVA', 'Kotlin', 'BASIC', 'Erlang', 'Delphi', 'Ruby', 'Pascal', 'Python', 'MATLAB', 'COBOL', 'JADE', 'UNITY', 'RAPID', 'PEARL', 'Fortran', 'TypeScript']
 const list = ref([{ id: 1, title: "CSS", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
 { id: 2, title: "JavaScript", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." },
@@ -79,9 +71,6 @@ const list = ref([{ id: 1, title: "CSS", text: "Lorem ipsum dolor sit. Dicta rep
 { id: 7, title: "Angular", text: "Lorem ipsum dolor sit. Dicta repellat itaque, corrupti facilis sapiente ipsa perferendis quasi inventore sint blanditiis reiciendis laborum aut qui numquam ad." }
 ]);
 let listOnAir = ref([...list.value]);
-const query = ref('');
-let sort = ref(false);
-const adding = ref(false);
 
 function sortList() {
     console.log('sort list');
@@ -227,48 +216,46 @@ button {
             float: left;
             width: 310px;
             margin-right: 15px;
-            // transition-delay: 0 !important;
+            // transition: box-shadow 0.3s ease;
 
             button {
                 border-radius: 50%;
+                transform: translateX(-10px) scale(0.5, 0.5);
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                width: 32px;
-                height: 32px;
+                width: 38px;
+                height: 38px;
                 transition: all 0.3s ease-out;
                 opacity: 0;
-                padding: 16px;
+                z-index: -1;
+                font-size: 20px;
             }
 
             .card-container {
                 cursor: pointer;
 
-                // &.in {
-                //     .card-main {
-                //         animation: cardHoverIn .4s ease-in-out forwards;
-                //         // transform: rotateX(10deg) rotateY(20deg) rotateZ(-5deg) translateZ(0px) translateX(-10px);
-                //         // box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
-                //     }
+                .card-main {
+                    transition: all 0.3s ease-out;
+                }
 
-                //     .card-alt {
-                //         opacity: 1;
-                //         transform: rotateY(-30deg) translateX(40px);
-                //         box-shadow: 10px 10px 30px rgba(128, 128, 128, 0.527);
-                //     }
-                // }
 
                 &:hover {
                     button {
                         opacity: 1;
-                        transform: translateX(30px) scaleX(1.4) scaleY(1.3) rotateZ(3deg) skewX(-4deg) rotateY(35deg);
+                        transform: translateX(10px) scale(1, 1);
+                        transition-delay: 0.2s;
+
+                        &:hover {
+                            transition-delay: 0s;
+                        }
 
                     }
 
                     .card-main {
-                        animation: cardHover .4s ease-in-out forwards;
-                        // transform: rotateX(10deg) rotateY(20deg) rotateZ(-5deg) translateZ(0px) translateX(-10px);
-                        // box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
+                        // animation: cardHover .4s ease-in-out forwards;
+                        transform: rotateX(10deg) rotateY(20deg) rotateZ(-6deg) translateZ(0px) translateX(-6px);
+                        box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
                     }
 
                     .card-main-alt {
@@ -305,7 +292,6 @@ button {
                         padding: 16px;
                         border-radius: 8px;
                         border: solid 1px gray;
-                        // transition:all .2s ease-in;
 
                         &.card-alt {
                             opacity: 0;
@@ -323,7 +309,9 @@ button {
 .slide-in {
 
     &-move {
+        transition: all 0.3s ease;
         transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        box-shadow: 0px 0px 20px gray;
     }
 
     &-enter-active {
@@ -383,7 +371,7 @@ button {
     }
 
     100% {
-        transform: rotateX(10deg) rotateY(20deg) rotateZ(-5deg) translateZ(0px) translateX(0px);
+        transform: rotateX(10deg) rotateY(20deg) rotateZ(-6deg) translateZ(0px) translateX(-6px);
         box-shadow: -10px 10px 30px rgba(128, 128, 128, 0.527);
     }
 }
