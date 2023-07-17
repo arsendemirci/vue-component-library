@@ -4,13 +4,13 @@
       <div class="card-body">
         <h2 class="card-title"><span>👀</span>Overview</h2>
         <p class="card-text">This project is actually a part of a vue3 component library project that is under development
-          right now. ag-dialog is a custom component that takes advantage of many features of Vue3.</p>
+          right now. hw-dialog is a custom component that takes advantage of many features of Vue3.</p>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
         <h2 class="card-title"><span>🔫</span>Getting Started</h2>
-        <p class="card-text">For ag-dialog there are some props and their default values are avaliable. You can see the
+        <p class="card-text">For hw-dialog there are some props and their default values are avaliable. You can see the
           other values on props table. See the code example below:</p>
       </div>
     </div>
@@ -192,4 +192,5 @@ td {
 th {
   background-color: palette-color-level(grey, 80);
   font-weight: palette-font-weight-level(5);
-}</style>
+}
+</style>

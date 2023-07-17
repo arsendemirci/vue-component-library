@@ -132,7 +132,7 @@
 
 
 <script>
-import HwDialog from '../../components/library/select/HwDialog.vue';
+import HwDialog from '../../components/library/dialog/HwDialog.vue';
 import DialogDemo from './DialogDemo.vue';
 
 export default {
