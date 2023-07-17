@@ -411,7 +411,7 @@ const mouseUpHandler = (e) => {
     20%{
       background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.3);
     }
-    50%{
+    60%{
       background-color: rgba($color: palette-color-level(blue, 40), $alpha: 0.15);
       transform: scale(1.1);
     }
@@ -424,7 +424,7 @@ const mouseUpHandler = (e) => {
     20%{
       background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.3);
     }
-    50%{
+    60%{
       background-color: rgba($color: palette-color-level(red, 30), $alpha: 0.15);
       transform: scale(1.1);
     }
@@ -437,7 +437,7 @@ const mouseUpHandler = (e) => {
     20%{
       background-color: rgba($color: #329131, $alpha: 0.3);
     }
-    50%{
+    60%{
       background-color: rgba($color: #329131, $alpha: 0.15);
       transform: scale(1.1);
     }
@@ -450,7 +450,7 @@ const mouseUpHandler = (e) => {
     20%{
       background-color: rgba($color: #eed202, $alpha: 0.3);
     }
-    50%{
+    60%{
       background-color: rgba($color: #eed202, $alpha: 0.15);
       transform: scale(1.1);
     }
