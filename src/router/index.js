@@ -26,6 +26,11 @@ const router = createRouter({
       component: () => import('../views/select/SelectDemo.vue')
     },
     {
+      path: '/buttons',
+      name: 'button',
+      component: () => import('../views/button/ButtonDemo.vue')
+    },
+    {
       path: '/dialog',
       name: 'dialog',
       component: () => import('../views/dialog/DialogDemo.vue')
