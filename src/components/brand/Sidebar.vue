@@ -38,6 +38,7 @@
          <router-link class="sub-menu-item" to="/buttons">Footers</router-link>
          <router-link class="sub-menu-item" to="/forms">Tabs</router-link>
          <router-link class="sub-menu-item" to="/selects">Pagination</router-link>
+         <router-link class="sub-menu-item" to="/breadcrumbs">Breadcrumbs</router-link>
        </li>
 
        <hr class="sub-menu-divider" aria-orientation="horizontal" role="separator" />

@@ -34,7 +34,58 @@ const router = createRouter({
       path: '/dialog',
       name: 'dialog',
       component: () => import('../views/dialog/DialogDemo.vue')
-    }
+    },
+    {
+        path: '/breadcrumbs',
+        name: 'breadcrumbs',
+        component: () => import('../views/breadcrumbs/BreadcrumbsDemo.vue'),
+        children: [
+          {
+            path: '',
+            component:  () => import('../views/breadcrumbs/Home.vue'),
+            meta: {
+              breadcrumb: [
+                { name: 'Home' }
+              ]
+            },
+          },
+          {
+            path: 'children1',
+            component:  () => import('../views/breadcrumbs/Children1.vue'),
+            meta: {
+              breadcrumb: [
+                {
+                  name: "Home",
+                  href: "/breadcrumbs",
+                },
+                {
+                  name: "Children 1",
+                },
+              ]
+            },
+          },
+          {
+            path: 'children1/children2',
+            component:  () => import('../views/breadcrumbs/Children2.vue'),
+            meta: {
+              breadcrumb: [
+                {
+                  name: "Home",
+                  href: "/breadcrumbs",
+                },
+                {
+                  name: "Children 1",
+                  href: "/breadcrumbs/children1",
+                  
+                },
+                {
+                  name: "Children 2",
+                },
+              ]
+            },
+          },
+        ],
+      }
   ]
 })
 
